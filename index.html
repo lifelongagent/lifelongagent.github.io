@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Lifelong Agents: Learning, Aligning, Evolving">
+  <meta name="keywords" content="ACL26 Workshop, Lifelong Learning, AI Agents">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACL 2026 Workshop: Lifelong Agents</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/nav.css">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+  <nav class="llm-nav" >
+    <a class="llm-nav-item" href="#organizer">Organizer</a>
+    <a class="llm-nav-item" href="#summary">Summary</a>
+    <a class="llm-nav-item" href="#schedule">Schedule</a>
+    <a class="llm-nav-item" href="#resource">Resource</a>
+  </nav>
+
+<div class="main-title">
+  <div style="padding: 0 20px">
+    <p style="color:#333;text-align:center;padding-top:40px;font-size:2.6em">Lifelong Agents: <br \> Learning, Aligning, Evolving</p>
+    <p style="color:#333;text-align:center;padding-top:20px;font-size:1.5em">ACL 2026 Workshop, San Diego</p>
+    <p style="color:#333;text-align:center;padding-top:10px;font-size:1.5em">July 2026</p>
+  </div>
+</div>
+
+
+<section class="section hero" id="organizer">
+  <!-- <h2 class="title is-3 is-centered has-text-centered">About US</h2> -->
+  <div class="organizer-container">
+    <div class="organizer-item">
+      <img width="150px" height="120px" src="static/imgs/profile_cheng.jpg">
+      <div> <a href="https://qiancheng0.github.io/" style="border-radius: 50%">Cheng Qian</a><sup>1</sup></div>
+    </div>
+    <div class="organizer-item">
+      <img width="150px" height="120px" src="static/imgs/profile_emre.jpeg">
+      <div> <a href="https://emrecanacikgoz.github.io/" style="border-radius: 50%">Emre Can Acikgoz</a><sup>1</sup></div>
+    </div>
+    <div class="organizer-item">
+      <img width="150px" height="120px" src="static/imgs/profile_hongru.png">
+      <div> <a href="https://hrwise-nlp.github.io/" style="border-radius: 50%">Hongru Wang</a><sup>2</sup></div>
+    </div>
+    <div class="organizer-item">
+      <img width="150px" height="120px" src="static/imgs/profile_jiahao.jpg">
+      <div> <a href="https://ece.princeton.edu/people/jiahao-qiu/" style="border-radius: 50%">Jiahao Qiu</a><sup>3</sup></div>
+    </div>
+    <div class="organizer-item">
+      <img width="150px" height="120px" src="static/imgs/profile_zhenfei.jpg">
+      <div> <a href="https://yinzhenfei.github.io/" style="border-radius: 50%">Zhenfei Yin</a><sup>4</sup></div>
+    </div>
+    <div class="organizer-item">
+      <img width="150px" height="120px" src="static/imgs/profile_guanhua.png">
+      <div> <a href="https://ghchen.me/" style="border-radius: 50%">Guanhua Chen</a><sup>5</sup></div>
+    </div>
+    <div class="organizer-item">
+      <img width="150px" height="120px" src="static/imgs/profile_manling.jpg">
+      <div> <a href="https://limanling.github.io/" style="border-radius: 50%">Manling Li</a><sup>6</sup></div>
+    </div>
+    <div class="organizer-item">
+      <img width="150px" height="120px" src="static/imgs/profile_vivian.jpeg">
+      <div> <a href="https://www.csie.ntu.edu.tw/~yvchen/" style="border-radius: 50%">Vivian Chen</a><sup>7</sup></div>
+    </div>
+  </div>
+  <div class="publication-authors">
+    <span class="author-block"><sup>1</sup>University of Illinois Urbana Champaign,</span>
+    <span class="author-block"><sup>2</sup>University of Edinburgh,</span>
+    <span class="author-block"><sup>3</sup>Princeton University,</span>
+    <span class="author-block"><sup>4</sup>University of Oxford,</span>
+    <span class="author-block"><sup>5</sup>Southern University of Science and Technology,</span>
+    <span class="author-block"><sup>6</sup>Northwestern University,</span>
+    <span class="author-block"><sup>7</sup>National Taiwan University,</span>
+  </div>
+  <div class="university-logos">
+    <img src="./static/imgs/uiuc.png" alt="UIUC Logo" class="university-logo">
+    <img src="./static/imgs/uoe.png" alt="University of Edinburgh Logo" class="university-logo">
+    <img src="./static/imgs/pton.svg" alt="Princeton University Logo" class="university-logo">
+    <img src="./static/imgs/oxford.png" alt="University of Oxford Logo" class="university-logo">
+    <img src="./static/imgs/sustech.png" alt="Southern University of Science and Technology Logo" class="university-logo">
+    <img src="./static/imgs/northwestern.png" alt="Northwestern University Logo" class="university-logo">
+    <img src="./static/imgs/ntu.png" alt="National Taiwan University Logo" class="university-logo">
+  </div>
+</section>
+
+
+
+<!-- Lifelong Agents Workshop — Website Copy -->
+<section class="section" id="summary">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Summary</h2>
+        <div class="content has-text-justified">
+          <p class="is-italic">“The measure of intelligence is the ability to change.” — Albert Einstein</p>
+          <p>
+            <strong>Lifelong Agents: Learning, Aligning, and Evolving</strong> — AI is at a turning point. Despite rapid progress in reinforcement learning, large language models, and embodied systems, most agents still follow a <em>train once, deploy once</em> paradigm: they excel on benchmarks yet falter when tasks shift, environments drift, or deployments extend over time. This workshop reframes intelligence as a process that learns continuously, aligns reliably with human preferences, and evolves its capabilities responsibly across an agent’s lifespan.
+          </p>
+          <p>
+            We gather researchers and practitioners from academia and industry to unify fragmented threads—continual learning, agentic RL, post-training for LLMs, alignment, efficiency, and multi-agent collectives—into a shared agenda. Through invited talks, contributed papers, and a panel discussion, we will surface principles, stress-test assumptions, and outline a roadmap for agents that are not just high-performing, but <em>intelligently persistent</em>.
+          </p>
+          <p>
+            More detail can be found in the original <a href="static/references/proposal.pdf">proposal</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="vision">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Why Lifelong Agents?</h2>
+        <div class="content has-text-justified">
+          <p>
+            We envision agents that accumulate knowledge, refine skills, and expand toolsets over months and years—without catastrophic forgetting or value drift. They remain focused on predefined goals, adapt responsibly to changing constraints, and leverage collective intelligence where appropriate. Progress along this trajectory demands advances in three tightly coupled dimensions:
+          </p>
+          <ul>
+            <li><strong>Learning Across Time:</strong> continual acquisition and consolidation of knowledge; robust adaptation to non-stationary environments and shifting tasks.</li>
+            <li><strong>Alignment Over Lifespans:</strong> preference learning, oversight, and guardrails that maintain value consistency and trustworthiness as agents change.</li>
+            <li><strong>Evolving Capabilities:</strong> self-improvement in representations, memory, strategies, and tooling—individually and in multi-agent collectives.</li>
+          </ul>
+          <p>
+            Cross-cutting requirements—<em>efficiency and sustainability</em>—ensure these systems remain practical and responsible at scale.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="call-for-papers">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Call for Papers</h2>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-5">Scope &amp; Topics</h3>
+          <p>
+            We invite <strong>long (8-page)</strong> and <strong>short (4-page)</strong> paper submissions on topics including, but not limited to:
+          </p>
+          <ul>
+            <li><em>Post-training of Agents:</em> continual fine-tuning, instruction alignment, domain-shift adaptation, agentic reinforcement learning.</li>
+            <li><em>Real-world Agents:</em> multimodal and embodied agents, scientific/enterprise agents, evaluation and benchmarks for real deployments.</li>
+            <li><em>Preference-Aligned Agents:</em> safety, personalization, value stability over time, efficient and resource-aware agents, self-monitoring/self-awareness.</li>
+            <li><em>Self-Evolving Agents:</em> memory-augmented agents, autonomous refinement of reasoning and tools, self-improvement loops.</li>
+            <li><em>Multi-Agent Systems:</em> cooperation, competition, negotiation, coordination, and collective intelligence.</li>
+            <li><em>Cross-cutting Foundations:</em> efficiency, sustainability, evaluation protocols for lifelong learning and long-horizon alignment.</li>
+          </ul>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-5">Submission Instructions</h3>
+          <ul>
+            <li>Submissions should be anonymized and formatted according to the workshop’s template (PDF). Preprints are welcome.</li>
+            <li>Page limits: <strong>8 pages</strong> (long) or <strong>4 pages</strong> (short), excluding references and appendices.</li>
+            <li>Review will be double-blind. At least one author of each accepted paper must register and present (oral or poster).</li>
+            <li>We encourage the release of code, data, and evaluation artifacts when feasible.</li>
+          </ul>
+          <p>
+            Detailed policies, templates, and the submission portal will be announced here. More detail can be found in the original <a href="static/references/proposal.pdf">proposal</a>.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-5">Important Dates</h3>
+          <p><em>All dates are AoE (Anywhere on Earth). Exact dates are TBD and will appear here.</em></p>
+          <ul>
+            <li><strong>Paper submission deadline:</strong> <span class="tag is-warning is-light">TBD</span></li>
+            <li><strong>Author notification:</strong> <span class="tag is-warning is-light">TBD</span></li>
+            <li><strong>Camera-ready due:</strong> <span class="tag is-warning is-light">TBD</span></li>
+            <li><strong>Workshop date:</strong> <span class="tag is-warning is-light">TBD</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="program">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Program at a Glance</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li>Invited talks from academia and industry on lifelong learning, alignment, and evolving agents.</li>
+            <li>Paper sessions highlighting empirical and theoretical advances across the three dimensions.</li>
+            <li>Interactive poster session to spark collaboration and cross-pollination.</li>
+            <li>Panel discussion to surface open problems and chart a community roadmap.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="participation">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Participation &amp; Community</h2>
+        <div class="content has-text-justified">
+          <p>
+            We welcome researchers, practitioners, and students working on continual learning, RL, LLM post-training, safety &amp; alignment, efficiency, evaluation, and multi-agent systems. Join us to help define the foundations for agents that endure—and improve—over time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="schedule">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Schedule</h2>
+        <!-- <p>
+          Our tutorial will be held on July 14, 2024 at Washington D.C US on SIGIR 2024.
+          <em>Slides may be subject to updates.</em>
+        </p> -->
+
+        <div class="content has-text-justified">
+
+          <style type="text/css">
+          .tg  {border-collapse:collapse;border-spacing:0;}
+          .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+            overflow:hidden;padding:10px 5px;word-break:normal;}
+          .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+          .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+          .tg .tg-0lax{text-align:left;vertical-align:top}
+          </style>
+          <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-0pky">Time</th>
+              <th class="tg-0lax">Section</th>
+              <th class="tg-0lax">Presenter</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-0lax">13:30—13:45</td>
+              <td class="tg-0lax">Section 1: Introduction</td>
+              <td class="tg-0lax">Diji Yang</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">13:45—14:30</td>
+              <td class="tg-0lax">Section 2: Foundations of Tool Learning</td>
+              <td class="tg-0lax">Hongru Wang</td>
+            </tr>
+             <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 2.1: Definition and Scope of Tools</td>
+              <td class="tg-0lax"></td>
+            </tr>
+             <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 2.2: Components and Architecture of Tool Learning</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">14:30—15:00</td>
+              <td class="tg-0lax">Section 3: Tool Learning based on LLMs</td>
+              <td class="tg-0lax">Yujia Qin</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 3.1: Tool-oriented Learning</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 3.2: Tool-augmented Learning</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 3.3: "Learning" of Tool Learning</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">15:00—15:30</td>
+              <td class="tg-0lax">Coffee break</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">15:30—16:00</td>
+              <td class="tg-0lax">Section 4: Application of Tool Learning</td>
+              <td class="tg-0lax">Diji Yang</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 4.1: Tool Creation, Selection and Utilization</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 4.2: Tool Learning in Information Retrieval</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 4.3: Tool Learning in Embodied Environment</td>
+              <td class="tg-0lax"></td>
+            </tr>
+           <!--  <tr>
+              <td class="tg-0lax">16:00-17:00</td>
+              <td class="tg-0lax">Q & A Session I</td>
+              <td class="tg-0lax"></td>
+            </tr> -->
+            <tr>
+              <td class="tg-0lax">16:00-16:45</td>
+              <td class="tg-0lax">Section 5: Advanced Topics and Future Directions</td>
+              <td class="tg-0lax">Hongru Wang</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 5.1: Multi-modal and Multi-agent Tool Learning</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 5.2: Safe, Trustworhy and Personalized Tool Learning</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax"></td>
+              <td class="tg-0lax">Section 5.3: Emerging Trends and Future Opportunities</td>
+              <td class="tg-0lax"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">16:45—17:00</td>
+              <td class="tg-0lax">Section 6: Summary and Overlook</td>
+              <td class="tg-0lax">Hongru Wang</td>
+            </tr>
+            <!-- <tr>
+              <td class="tg-0lax">17:20—17:30</td>
+              <td class="tg-0lax">Q & A Session II</td>
+              <td class="tg-0lax"></td>
+            </tr> -->
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+<!-- <section class="section" id="resource">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Resources</h2>
+        
+        <ul style="list-style-type:square; line-height:200%; margin-left:15px;">
+            <li>Our slides can be found here: <a href="https://docs.google.com/presentation/d/1jI-kx8NIQdfy5Sp2213H7tJ9g6EW1_TCl0Im2-27Th4/edit?usp=sharing">Slides</a>. Feel free to comments and give us feedbacks.</li>
+            <li>All mentioned paper can be found in this Repo: <a href="https://github.com/ruleGreen/tools-meet-llm">&#128214; ToolsMeetLLMs</a> We will keep updating it.</li>
+            <li>Retrievl-augmented Generation Repo: <a href="https://github.com/ruleGreen/RAG_LLM">&#128214; RAG_LLM</a></li>
+            <li>Survey Paper: <a href="https://arxiv.org/abs/2304.08354.pdf"> Tool Learning with Foundation Models </a> </li>
+        </ul>
+
+      </div>
+      </div>
+    </div>
+</section> -->
+
+
+
+<!-- <section id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{toolmeetllm,
+        author = {Wang, Hongru and Qin, Yujia and Lin, Yankai and Pan, Jeff Z. and Wong, Kam-Fai},
+        title = {Empowering Large Language Models: Tool Learning for Real-World Interaction},
+        year = {2024},
+        isbn = {9798400704314},
+        publisher = {Association for Computing Machinery},
+        address = {New York, NY, USA},
+        url = {https://doi.org/10.1145/3626772.3661381},
+        doi = {10.1145/3626772.3661381},
+        abstract = {Since the advent of large language models (LLMs), the field of tool learning has remained very active in solving various tasks in practice, including but not limited to information retrieval. This half-day tutorial provides basic concepts of this field and an overview of recent advancements with several applications. In specific, we start with some foundational components and architecture of tool learning (i.e., cognitive tool and physical tool), and then we categorize existing studies in this field into tool-augmented learning and tool-oriented learning, and introduce various learning methods to empower LLMs this kind of capability. Furthermore, we provide several cases about when, what, and how to use tools in different applications. We end with some open challenges and several potential research directions for future studies. We believe this tutorial is suited for both researchers at different stages (introductory, intermediate, and advanced) and industry practitioners who are interested in LLMs and tool learning.},
+        booktitle = {Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+        pages = {2983–2986},
+        numpages = {4},
+        keywords = {language agents, large language models, tool learning},
+        location = {Washington DC, USA},
+        series = {SIGIR '24}
+        }</code></pre>
+  </div>
+</section> -->
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/ACL2023-Retrieval-LM" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Thanks to tutorial of ACL 2023 about <a href="https://acl2023-retrieval-lm.github.io/">retrieval-augmented generation</a>, we use the similar template with minor adjustments.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="./static/js/main.js"></script>
+<!-- <script type="module" src="./static/js/main.js"></script> -->
+
+</body>
+</html>
