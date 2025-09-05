@@ -1,411 +1,754 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Lifelong Agents: Learning, Aligning, Evolving">
-  <meta name="keywords" content="ACL26 Workshop, Lifelong Learning, AI Agents">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ACL 2026 Workshop: Lifelong Agents</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+  <title>ACL 2026 Workshop Proposal - Lifelong Agents: Learning, Aligning, Evolving</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="./static/css/nav.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
 
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-</head>
+  <link href="assets/css/style.css" rel="stylesheet">
+  
+  <style>
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
+    }
+    .schedule-table th,
+    .schedule-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    .schedule-table th {
+      background-color: #f7f7f7;
+      font-weight: bold;
+    }
+    .schedule-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .schedule-table tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .schedule-table th,
+      .schedule-table td {
+        padding: 10px;
+      }
+    }
+    
+    /* Unified organizer image styles */
+    #organizers .speaker img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+    
+    /* Unified speaker image styles */
+    #speakers .speaker img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+    
+    /* Unified panelist image styles */
+    #panelists .speaker img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+    
+    /* Unified sponsor image styles */
+    #sponsors .speaker img {
+      width: 300px;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+  </style>
+  </head>
+
 <body>
-  <nav class="llm-nav" >
-    <a class="llm-nav-item" href="#organizer">Organizer</a>
-    <a class="llm-nav-item" href="#summary">Summary</a>
-    <a class="llm-nav-item" href="#schedule">Schedule</a>
-    <a class="llm-nav-item" href="#resource">Resource</a>
-  </nav>
 
-<div class="main-title">
-  <div style="padding: 0 20px">
-    <p style="color:#333;text-align:center;padding-top:40px;font-size:2.6em">Lifelong Agents: <br \> Learning, Aligning, Evolving</p>
-    <p style="color:#333;text-align:center;padding-top:20px;font-size:1.5em">ACL 2026 Workshop, San Diego</p>
-    <p style="color:#333;text-align:center;padding-top:10px;font-size:1.5em">July 2026</p>
-  </div>
-</div>
+  <header id="header" class="d-flex align-items-center ">
+    <div class="container-fluid container-xxl d-flex align-items-center">
 
-
-<section class="section hero" id="organizer">
-  <!-- <h2 class="title is-3 is-centered has-text-centered">About US</h2> -->
-  <div class="organizer-container">
-    <div class="organizer-item">
-      <img width="150px" height="120px" src="static/imgs/profile_cheng.jpg">
-      <div> <a href="https://qiancheng0.github.io/" style="border-radius: 50%">Cheng Qian</a><sup>1</sup></div>
-    </div>
-    <div class="organizer-item">
-      <img width="150px" height="120px" src="static/imgs/profile_emre.jpeg">
-      <div> <a href="https://emrecanacikgoz.github.io/" style="border-radius: 50%">Emre Can Acikgoz</a><sup>1</sup></div>
-    </div>
-    <div class="organizer-item">
-      <img width="150px" height="120px" src="static/imgs/profile_hongru.png">
-      <div> <a href="https://hrwise-nlp.github.io/" style="border-radius: 50%">Hongru Wang</a><sup>2</sup></div>
-    </div>
-    <div class="organizer-item">
-      <img width="150px" height="120px" src="static/imgs/profile_jiahao.jpg">
-      <div> <a href="https://ece.princeton.edu/people/jiahao-qiu/" style="border-radius: 50%">Jiahao Qiu</a><sup>3</sup></div>
-    </div>
-    <div class="organizer-item">
-      <img width="150px" height="120px" src="static/imgs/profile_zhenfei.jpg">
-      <div> <a href="https://yinzhenfei.github.io/" style="border-radius: 50%">Zhenfei Yin</a><sup>4</sup></div>
-    </div>
-    <div class="organizer-item">
-      <img width="150px" height="120px" src="static/imgs/profile_guanhua.png">
-      <div> <a href="https://ghchen.me/" style="border-radius: 50%">Guanhua Chen</a><sup>5</sup></div>
-    </div>
-    <div class="organizer-item">
-      <img width="150px" height="120px" src="static/imgs/profile_manling.jpg">
-      <div> <a href="https://limanling.github.io/" style="border-radius: 50%">Manling Li</a><sup>6</sup></div>
-    </div>
-    <div class="organizer-item">
-      <img width="150px" height="120px" src="static/imgs/profile_vivian.jpeg">
-      <div> <a href="https://www.csie.ntu.edu.tw/~yvchen/" style="border-radius: 50%">Vivian Chen</a><sup>7</sup></div>
-    </div>
-  </div>
-  <div class="publication-authors">
-    <span class="author-block"><sup>1</sup>University of Illinois Urbana Champaign,</span>
-    <span class="author-block"><sup>2</sup>University of Edinburgh,</span>
-    <span class="author-block"><sup>3</sup>Princeton University,</span>
-    <span class="author-block"><sup>4</sup>University of Oxford,</span>
-    <span class="author-block"><sup>5</sup>Southern University of Science and Technology,</span>
-    <span class="author-block"><sup>6</sup>Northwestern University,</span>
-    <span class="author-block"><sup>7</sup>National Taiwan University,</span>
-  </div>
-  <div class="university-logos">
-    <img src="./static/imgs/uiuc.png" alt="UIUC Logo" class="university-logo">
-    <img src="./static/imgs/uoe.png" alt="University of Edinburgh Logo" class="university-logo">
-    <img src="./static/imgs/pton.svg" alt="Princeton University Logo" class="university-logo">
-    <img src="./static/imgs/oxford.png" alt="University of Oxford Logo" class="university-logo">
-    <img src="./static/imgs/sustech.png" alt="Southern University of Science and Technology Logo" class="university-logo">
-    <img src="./static/imgs/northwestern.png" alt="Northwestern University Logo" class="university-logo">
-    <img src="./static/imgs/ntu.png" alt="National Taiwan University Logo" class="university-logo">
-  </div>
-</section>
-
-
-
-<!-- Lifelong Agents Workshop — Website Copy -->
-<section class="section" id="summary">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Summary</h2>
-        <div class="content has-text-justified">
-          <p class="is-italic">“The measure of intelligence is the ability to change.” — Albert Einstein</p>
-          <p>
-            <strong>Lifelong Agents: Learning, Aligning, and Evolving</strong> — AI is at a turning point. Despite rapid progress in reinforcement learning, large language models, and embodied systems, most agents still follow a <em>train once, deploy once</em> paradigm: they excel on benchmarks yet falter when tasks shift, environments drift, or deployments extend over time. This workshop reframes intelligence as a process that learns continuously, aligns reliably with human preferences, and evolves its capabilities responsibly across an agent's lifespan.
-          </p>
-          <p>
-            We gather researchers and practitioners from academia and industry to unify fragmented threads including continual learning, agentic RL, post-training for LLMs, alignment, efficiency, and multi-agent collectives into a shared agenda. Through invited talks, contributed papers, and a panel discussion, we will surface principles, assumptions, and outline a roadmap for agents that are not just high-performing, but <em>intelligently persistent</em>.
-          </p>
-          <p>
-            More detail can be found in the original <a href="static/references/proposal.pdf">proposal</a> here.
-          </p>
-        </div>
+      <div id="logo" class="me-auto">
+        <a href="index.html" class="scrollto"><img src="assets/img/logo.png" alt="" title=""></a>
       </div>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#topic">Topics</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#cfp">Call for Papers</a></li> -->
+          <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#accepted-paper">Accepted Papers</a></li> -->
+          <li><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#grant">Student Registration Grant</a></li> -->
+          <li><a class="nav-link scrollto" href="#organizers">Organizers</a></li>
+          <li><a class="nav-link scrollto" href="#advisors">Advisors</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#sponsors">Sponsors</a></li> -->
+          <!-- <li><a class="nav-link scrollto" href="#faq">FAQ</a></li> -->
+          <li><a class="nav-link scrollto" href="mailto:lifelong-agents-organizers@googlegroups.com">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+
     </div>
-  </div>
-</section>
-
-<section class="section" id="vision">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Why Lifelong Agents?</h2>
-        <div class="content has-text-justified">
-          <p>
-            We envision agents that accumulate knowledge, refine skills, and expand toolsets over months and years without catastrophic forgetting or value drift. They remain focused on predefined goals, adapt responsibly to changing constraints, and leverage collective intelligence where appropriate. Progress along this trajectory demands advances in three tightly coupled dimensions:
-          </p>
-          <ul>
-            <li><strong>Learning Across Time:</strong> continual acquisition and consolidation of knowledge; robust adaptation to non-stationary environments and shifting tasks.</li>
-            <li><strong>Alignment Over Lifespans:</strong> preference learning, oversight, and guardrails that maintain value consistency and trustworthiness as agents change.</li>
-            <li><strong>Evolving Capabilities:</strong> self-improvement in representations, memory, strategies, and tooling—individually and in multi-agent collectives.</li>
-          </ul>
-          <p>
-            Cross-cutting requirements such as <em>efficiency and sustainability</em> ensure these systems remain practical and responsible at scale.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="call-for-papers">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Call for Papers</h2>
-
-        <div class="content has-text-justified">
-          <h3 class="title is-5">Scope &amp; Topics</h3>
-          <p>
-            We invite <strong>long (8-page)</strong> and <strong>short (4-page)</strong> paper submissions on topics including, but not limited to:
-          </p>
-          <ul>
-            <li><em>Post-training of Agents:</em> continual fine-tuning, instruction alignment, domain-shift adaptation, agentic reinforcement learning.</li>
-            <li><em>Preference-Aligned Agents:</em> safety, personalization, value stability over time, efficient and resource-aware agents, self-monitoring/self-awareness.</li>
-            <li><em>Self-Evolving Agents:</em> memory-augmented agents, autonomous refinement of reasoning and tools, self-improvement loops.</li>
-            <li><em>Real-world Agents:</em> multimodal and embodied agents, scientific/enterprise agents, evaluation and benchmarks for real deployments.</li>
-            <li><em>Multi-Agent Systems:</em> cooperation, competition, negotiation, coordination, and collective intelligence.</li>
-            <li><em>Cross-cutting Foundations:</em> efficiency, sustainability, evaluation protocols for lifelong learning and long-horizon alignment.</li>
-          </ul>
-        </div>
-
-        <div class="content has-text-justified">
-          <h3 class="title is-5">Submission Instructions</h3>
-          <ul>
-            <li>Submissions should be anonymized and formatted according to the workshop's template. Preprints are welcome.</li>
-            <li>Page limits: <strong>8 pages</strong> (long) or <strong>4 pages</strong> (short), excluding references and appendices.</li>
-            <li>Review will be double-blind using the OpenReview platform. At least one author of each accepted paper should register and present (oral or poster).</li>
-            <li>We encourage the release of code, data, and evaluation artifacts when feasible.</li>
-          </ul>
-          <p>
-            Detailed policies, templates, and the submission portal will be announced here.
-          </p>
-        </div>
-
-        <div class="content has-text-justified">
-          <h3 class="title is-5">Important Dates</h3>
-          <p><em>All dates are AoE (Anywhere on Earth). Exact dates are TBD and will appear here.</em></p>
-          <ul>
-            <li><strong>Paper submission deadline:</strong> <span class="tag is-warning is-light">TBD</span></li>
-            <li><strong>Author notification:</strong> <span class="tag is-warning is-light">TBD</span></li>
-            <li><strong>Camera-ready due:</strong> <span class="tag is-warning is-light">TBD</span></li>
-            <li><strong>Workshop date:</strong> <span class="tag is-warning is-light">TBD</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- <section class="section" id="program">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Program at a Glance</h2>
-        <div class="content has-text-justified">
-          <ul>
-            <li>Invited talks from academia and industry on lifelong learning, alignment, and evolving agents.</li>
-            <li>Paper sessions highlighting empirical and theoretical advances across the three dimensions.</li>
-            <li>Interactive poster session to spark collaboration and cross-pollination.</li>
-            <li>Panel discussion to surface open problems and chart a community roadmap.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<section class="section" id="participation">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Participation &amp; Community</h2>
-        <div class="content has-text-justified">
-          <p>
-            We welcome researchers, practitioners, and students working on continual learning, RL, LLM post-training, safety &amp; alignment, efficiency, evaluation, and multi-agent systems. Join us to help define the foundations for agents that endure and improve over time.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section" id="schedule">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Schedule</h2>
-        <!-- <p>
-          Our tutorial will be held on July 14, 2024 at Washington D.C US on SIGIR 2024.
-          <em>Slides may be subject to updates.</em>
-        </p> -->
-
-        <div class="content has-text-justified">
-
-          <style type="text/css">
-          .tg  {border-collapse:collapse;border-spacing:0;}
-          .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-            overflow:hidden;padding:10px 5px;word-break:normal;}
-          .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-          .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-          .tg .tg-0lax{text-align:left;vertical-align:top}
-          </style>
-
-          <table class="tg">
-          <thead>
-            <tr>
-              <th class="tg-0pky">Time</th>
-              <th class="tg-0lax">Section</th>
-              <th class="tg-0lax">Presenter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="tg-0lax">9:00-9:15</td>
-              <td class="tg-0lax">Opening Remarks</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">9:15-10:45</td>
-              <td class="tg-0lax">Keynote Speeches (each 30 min)</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">10:45-11:15</td>
-              <td class="tg-0lax">Coffee Break</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">11:15-11:45</td>
-              <td class="tg-0lax">Oral Session I (each 15 min)</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">11:45-12:30</td>
-              <td class="tg-0lax">Poster Session I</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">12:30-13:30</td>
-              <td class="tg-0lax">Lunch</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">13:30-15:00</td>
-              <td class="tg-0lax">Keynote Speeches (each 30 min)</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">15:00-15:30</td>
-              <td class="tg-0lax">Coffee Break</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">15:30-16:00</td>
-              <td class="tg-0lax">Panel Discussion</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">16:00-16:30</td>
-              <td class="tg-0lax">Oral Session II (each 15 min)</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">16:30-17:15</td>
-              <td class="tg-0lax">Poster Session II</td>
-              <td class="tg-0lax"></td>
-            </tr>
-            <tr>
-              <td class="tg-0lax">17:15-17:30</td>
-              <td class="tg-0lax">Awards and Closing Remarks</td>
-              <td class="tg-0lax"></td>
-            </tr>
-          </tbody>
-        </table>
-
-        </div>
-      </div>
-    </div>
-</section>
-
-
-
-<!-- <section class="section" id="resource">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Resources</h2>
+  </header><section id="hero">
+    <div class="hero-container" data-aos="zoom-in" data-aos-delay="200">
+              <h1 class="mb-4 pb-0" style="text-transform: none;">
+                
+          ACL 2026 Workshop Proposal <br>
+          Lifelong Agents: Learning, Aligning, Evolving<br>
+          </h1>
+          <h2 class="mb-4 pb-0" style="text-transform: none; color: white;">
+            July 6/7, 2026<br>
+            San Diego, California, United States
+          </h2>
         
-        <ul style="list-style-type:square; line-height:200%; margin-left:15px;">
-            <li>Our slides can be found here: <a href="https://docs.google.com/presentation/d/1jI-kx8NIQdfy5Sp2213H7tJ9g6EW1_TCl0Im2-27Th4/edit?usp=sharing">Slides</a>. Feel free to comments and give us feedbacks.</li>
-            <li>All mentioned paper can be found in this Repo: <a href="https://github.com/ruleGreen/tools-meet-llm">&#128214; ToolsMeetLLMs</a> We will keep updating it.</li>
-            <li>Retrievl-augmented Generation Repo: <a href="https://github.com/ruleGreen/RAG_LLM">&#128214; RAG_LLM</a></li>
-            <li>Survey Paper: <a href="https://arxiv.org/abs/2304.08354.pdf"> Tool Learning with Foundation Models </a> </li>
+      <!-- <div class="social-links" style="margin-top: 25px;">
+        <a href="https://x.com/mti_neurips" target="_blank" rel="noopener noreferrer" style="margin-right: 15px; text-decoration: none; color: #1DA1F2;">
+          Twitter
+        </a>
+        <a href="https://openreview.net/group?id=NeurIPS.cc/2025/Workshop/MTI-LLM" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1DA1F2;">
+          OpenReview
+        </a>
+      </div> -->
+    </div>
+  </section>
+  <main id="main">
+
+    <section id="about">
+        <div class="container position-relative" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>About The Workshop</h2>
+                    <p style="font-size: 18px;">
+                      Artificial intelligence has reached a critical juncture. We are witnessing rapid advances in reinforcement learning, large language models, and embodied systems, yet most current agents remain bounded by the paradigm of <b>train once, deploy once</b>. They demonstrate remarkable performance in benchmarks, but struggle to adapt reliably to new environments, evolving tasks, or long-term deployment. This gap limits their robustness, trustworthiness, and societal value. The concept of the <b>lifelong agents</b> offers a new paradigm. Such agents are not static products but dynamic processes: they accumulate knowledge, refine skills, and evolve capabilities across time. They must remain focused on their predefined goals, act in alignment with human preferences, and adapt responsibly to changing environments and constraints. Building lifelong agents is not only a technical challenge but also a necessity to see AI systems that are sustainable, trustworthy, and impactful in the real world.
+                    </p>
+                    <p style="font-size: 18px;">
+                      Research communities have explored many of the necessary ingredients, such as continual learning, reinforcement learning, alignment frameworks, post-training adaptations, and efficiency methods for resource-constrained agents. Yet these discussions remain fragmented. This workshop aims to provide the first unified forum to bring these strands together, highlighting shared principles and surfacing open challenges. By reframing intelligence as a process that learns, aligns, and evolves across an agent’s lifespan, we aim to chart the foundations of agents that endure. The workshop will examine three key dimensions of lifelong agents: 1) <b>learning across time</b>: the agent continuously acquires and consolidates knowledge and skills without catastrophic forgetting, adapting to dynamic environments and shifting tasks; 2) <b>{alignment over lifespans</b>: the agent remains value-consistent and trustworthy as it adapts, with mechanisms for preference learning and oversight; 3) <b>evolving capabilities</b>: the agent self-improves by reorganizing representations or memory, discovering or creating new strategies and tools, and leveraging collective intelligence. There are also some cross-cutting requirements that enable progress along all three dimensions, i.e., efficiency and sustainability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="topic" class="section-with-bg">
+      <br>
+      <br>
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Topics</h2>
+          <p>Our topics include but are not limited to:</p>
+        </div>
+        <section id="topics">
+          <div class="container">
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background: #ffffff;">
+                  <b style="font-size: 18px; color: #343a40;">(1) Post-training of Agents:</b>
+                  <p style="color: #6c757d; margin-top: 10px;">
+                    Continual fine-tuning, instruction alignment, domain shift adaptation, agentic reinforcement learning.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background: #ffffff;">
+                  <b style="font-size: 18px; color: #343a40;">(2) Preference-Aligned Agents:</b>
+                  <p style="color: #6c757d; margin-top: 10px;">
+                    Safe agent, personalized agent, efficient agents, self-aware agents.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background: #ffffff;">
+                  <b style="font-size: 18px; color: #343a40;">(3) Self-Evolving Agents:</b>
+                  <p style="color: #6c757d; margin-top: 10px;">
+                    Memory-augmented agents, autonomous refinement of reasoning and tools, self-improvement loops.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background: #ffffff;">
+                  <b style="font-size: 18px; color: #343a40;">(4) Real-world Agents:</b>
+                  <p style="color: #6c757d; margin-top: 10px;">
+                    Multimodal and embodied agents, scientific/enterprise agents, evaluation and benchmarks for real deployments.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background: #ffffff;">
+                  <b style="font-size: 18px; color: #343a40;">(5) Multi-Agent Systems:</b>
+                    Cooperation, competition, negotiation, coordination, and collective intelligence.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      <br>
+      <br>
+    </section>
+   
+    <!-- <section id="cfp">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Call For Papers</h2>
+        </div>
+        <p>
+          The <b>Workshop on Multi-Turn Interactions in LLMs @ NeurIPS 2025</b> invites submissions on the development of novel architectures, algorithms, theoretical analyses, empirical studies, and applications in multi-turn interactions with LLMs. Submissions must present original, unpublished research.
+        </p>
+        <h3>Key Dates</h3>
+        <ul class="fa-ul">
+          <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Suggested Submission Date for Workshop Contributions</b>: <del>August 22, 2025</del> <span style="color: red; font-weight: bold;">September <del>1st</del>2nd, 2025, AoE</span></li>
+          <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Mandatory Accept/Reject Notification Date</b>: September 22, 2025, AoE</li>
+          <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Workshop Date</b>: December 6 or December 7, 2025</li>
+        </ul>
+        Deadlines are strict and will not be extended under any circumstances. All deadlines follow the <a href="https://time.is/Anywhere_on_Earth">Anywhere on Earth (AoE)</a> timezone.
+        <br>
+        <br>
+        <h3>Submission Site</h3>
+        <p>
+          Submissions will be managed via OpenReview. Papers will remain private during the review process. All authors must maintain up-to-date OpenReview profiles to ensure proper conflict-of-interest management and paper matching. Incomplete profiles may result in desk rejection.  
+          <a href="https://docs.openreview.net/getting-started/creating-an-openreview-profile">Learn how to create an OpenReview profile here</a>.
+          <br>
+          <br>
+          Submit papers through the NeurIPS 2025 Workshop Submission Portal on OpenReview (<a href="https://openreview.net/group?id=NeurIPS.cc/2025/Workshop/MTI-LLM" target="_blank">Multi-Turn Interactions in LLMs Workshop Submission Portal</a>).
+        </p>
+
+        <h3>Scope</h3>
+        We welcome contributions across a broad spectrum of topics related to our themes. Accepted papers will be presented as posters, with a subset selected for oral presentations. The workshop will take place in person at NeurIPS 2025, with virtual participation options to be confirmed.
+
+        <br>
+        <br>
+        <h3>Submission Guidelines</h3>
+        <h5>Formatting Requirements</h5>
+
+        Submissions must be in English and follow the <a href="assets/files/_NeurIPS_2025__Multi_Turn_Interactions_in_Large_Language_Models.zip">NeurIPS 2025 Workshop LaTeX Template</a>.  
+        <br>
+        <br>
+        Papers must be submitted as a <b>single PDF file</b>:  
+        <ul class="fa-ul">
+          <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Full Papers</b>: at most 9 pages (main text)</li>
+          <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Short Papers</b>: at most 4 pages (main text)</li>
+          <li><span class="fa-li"><i class="fa fa-check"></i></span>References and appendices are not included in the page limit, but the main text must be self-contained. Reviewers are not required to read beyond the main text.</li>
         </ul>
 
+        <p>Submissions exceeding the page limit will be desk rejected.</p>
+
+        <h5>Anonymity</h5>
+        The workshop follows a <b>double-blind review process</b>. Submissions must be anonymized by removing author names, affiliations, and acknowledgments. Prior work should be cited in the third person. Identifying information, including in supplementary materials, must be omitted.
+        <br>
+        <br>
+        <h5>Dual Submission and Non-Archival Policy</h5>
+        <p><b>NeurIPS and ICLR submissions are welcome to submit to our workshop.</b> You can submit your work if it's currently under review at other venues. <del>However, <b>if your paper got accepted by other venues (e.g., NeurIPS) after submission, you have to withdraw from our workshop.</b></del> Papers that are accepted after the submission deadline <b>will not need to withdraw from our workshop</b>, since the workshop is not archival. (That was a mistake previously, sorry!)</p>
+        <br>
+        <br>
+        <h5>Transparency</h5>
+        By submitting to the workshop, authors agree that for all accepted papers, the original submission, reviews, and meta-reviews will be made publicly available on OpenReview.
+        <br>
+        <br>
+        <h5>Contact</h5>
+        Email at <a href="mailto:multiturn-interactions-organizers@googlegroups.com">multiturn-interactions-organizers@googlegroups.com</a>
       </div>
+    </section> -->
+
+    <section id="speakers" class="section-with-bg">
+      <div class="container" data-aos="fade-up">
+          <div class="section-header">
+              <h2>Speakers and Panelists</h2>
+          </div>
+          <div class="row">
+
+            <div class="col-md-3 col-sm-4 col-6">
+              <div class="speaker" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
+                  <img src="assets/img/speakers/yejin_choi.jpeg" alt="Yejin Choi" class="img-fluid">
+                  <br><a href="https://yejinc.github.io/" style="font-size: 1.2em; color: #00356B;">Yejin Choi</a></br>
+                  <p>Stanford University / Nvidia</p>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-sm-4 col-6">
+              <div class="speaker" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
+                  <img src="assets/img/speakers/siva_reddy.jpg" alt="Siva Reddy" class="img-fluid">
+                  <br><a href="https://sivareddy.in/" style="font-size: 1.2em; color: #00356B;">Siva Reddy</a></br>
+                  <p>McGill University / Mila</p>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-sm-4 col-6">
+              <div class="speaker" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
+                  <img src="assets/img/speakers/graham_neubig.jpg" alt="Graham Neubig" class="img-fluid">
+                  <br><a href="https://www.phontron.com/" style="font-size: 1.2em; color: #00356B;">Graham Neubig</a></br>
+                  <p>Carnegie Mellon University / All Hand AI</p>
+              </div>
+            </div>
+
+
+              <div class="col-md-3 col-sm-4 col-6">
+                <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+                    <img src="assets/img/speakers/jason_weston.jpg" alt="Jason Weston" class="img-fluid">
+                    <br><a href="https://www.thespermwhale.com/jaseweston/" style="font-size: 1.2em; color: #00356B;">Jason Weston</a></br>
+                    <p>Meta FAIR</p>
+                </div>
+             </div>
+
+            <div class="col-md-3 col-sm-4 col-6">
+              <div class="speaker" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
+                  <img src="assets/img/speakers/sergey_levine.jpg" alt="Sergey Levine" class="img-fluid">
+                  <br><a href="https://people.eecs.berkeley.edu/~svlevine/" style="font-size: 1.2em; color: #00356B;">Sergey Levine</a></br>
+                  <p>UC Berkeley</p>
+              </div>
+          </div>
+
+          <div class="col-md-3 col-sm-4 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+                <img src="assets/img/speakers/asli_celikyilmaz.jpeg" alt="Asli Celikyilmaz" class="img-fluid">
+                <br><a href="http://asli.us/" style="font-size: 1.2em; color: #00356B;">Asli Celikyilmaz</a></br>
+                <p>Meta FAIR</p>
+            </div>
+        </div>
+
+
+              <div class="col-md-3 col-sm-4 col-6">
+                  <div class="speaker" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
+                      <img src="assets/img/speakers/dawn_song.jpg" alt="Dawn Song" class="img-fluid">
+                      <br><a href="https://dawnsong.io/" style="font-size: 1.2em; color: #00356B;">Dawn Song</a></br>
+                      <p>UC Berkeley</p>
+                  </div>
+              </div>
+
+
+            
+              <div class="col-md-3 col-sm-4 col-6">
+                <div class="speaker" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
+                    <img src="assets/img/speakers/yu_su.jpg" alt="Yu Su" class="img-fluid">
+                    <br><a href="https://ysu1989.github.io/" style="font-size: 1.2em; color: #00356B;">Yu Su</a></br>
+                    <p>Ohio State University</p>
+                </div>
+            </div>
+          </div>
       </div>
-    </div>
-</section> -->
+  </section>
 
+  
+    <section id="schedule" style="padding-top: 20px;">
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Schedule</h2>
+                <p>Tentative workshop schedule. All talks include a Q&A session.</p>
+            </div>
+            <style>
+                .schedule-table td.time, .schedule-table th:first-child { white-space: nowrap; }
+                .schedule-table tr.break-row td { background-color: #fff3cd80 !important; }
+                .schedule-table tr.poster-row td { background-color: #d1ecf180 !important; }
+            </style>
+            <div class="table-responsive">
+                <table class="schedule-table table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Time&nbsp;(PDT)</th>
+                            <th>Session</th>
+                            <th>Speaker</th>
+                            <th>Talk&nbsp;Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time">08:45 – 09:00</td>
+                            <td>Opening Remarks</td>
+                            <td colspan="2">Organizers</td>
+                        </tr>
+                        <tr>
+                            <td class="time">09:00 – 09:30</td>
+                            <td>Invited Talk 1</td>
+                            <td>Yejin Choi (Stanford University / Nvidia)</td>
+                        </tr>
+                        <tr>
+                            <td class="time">09:30 – 10:00</td>
+                            <td>Invited Talk 2</td>
+                            <td>Siva Reddy (McGill University / Mila)</td>
+                        </tr>
+                        <tr>
+                            <td class="time">10:00 – 10:30</td>
+                            <td>Oral Presentation 1</td>
+                            <td colspan="2">TBA</td>
+                        </tr>
+                        <tr>
+                            <td class="time">10:30 – 11:30</td>
+                            <td>Coffee Break & Poster Session 1</td>
+                            <td colspan="2">TBA</td>
+                        </tr>
+                        <tr>
+                            <td class="time">11:30 – 12:00</td>
+                            <td>Invited Talk 3</td>
+                            <td>Graham Neubig (Carnegie Mellon University / All Hand AI)</td>
+                        </tr>
+                        <tr>
+                          <td class="time">12:00 – 12:30</td>
+                          <td>Invited Talk 4</td>
+                          <td>Jason Weston (Meta FAIR)</td>
+                      </tr>
+                        <tr class="break-row">
+                          <td class="time">12:30 – 13:30</td>
+                          <td colspan="3">Lunch Break</td>
+                      </tr>
+                        <tr>
+                            <td class="time">13:30 – 14:00</td>
+                            <td>Invited Talk 5</td>
+                            <td>Sergey Levine (UC Berkeley)</td>
+                        </tr>
+                        <tr>
+                          <td class="time">14:00 – 14:30</td>
+                          <td>Invited Talk 6</td>
+                          <td>Dawn Song (UC Berkeley)</td>
+                      </tr>
+                      <tr>
+                        <td class="time">14:30 – 15:00</td>
+                        <td>Invited Talk 7</td>
+                        <td>Asli Celikyilmaz (Meta FAIR)</td>
+                      </tr>
+                      <tr>
+                        <td class="time">15:00 – 16:00</td>
+                        <td>Coffee Break & Poster Session 2</td>
+                        <td colspan="2">TBA</td>
+                    </tr>
+                    <tr>
+                      <td class="time">16:00 – 16:30</td>
+                      <td>Invited Talk 8</td>
+                      <td>Yu Su (Ohio State University)</td>
+                    </tr>
+                    <tr>
+                      <td class="time">16:30 – 17:30</td>
+                      <td>Panel Discussion</td>
+                      <td colspan="2">TBA</td>
+                    </tr>
+                        <tr>
+                            <td class="time">17:30 – 17:45</td>
+                            <td>Paper Award & Closing Remarks</td>
+                            <td colspan="2">Organizers</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
+    <br>
+    <br>
+    <!-- <section id="accepted-paper">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Accepted Paper</h2>
+        </div>
 
-<!-- <section id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{toolmeetllm,
-        author = {Wang, Hongru and Qin, Yujia and Lin, Yankai and Pan, Jeff Z. and Wong, Kam-Fai},
-        title = {Empowering Large Language Models: Tool Learning for Real-World Interaction},
-        year = {2024},
-        isbn = {9798400704314},
-        publisher = {Association for Computing Machinery},
-        address = {New York, NY, USA},
-        url = {https://doi.org/10.1145/3626772.3661381},
-        doi = {10.1145/3626772.3661381},
-        abstract = {Since the advent of large language models (LLMs), the field of tool learning has remained very active in solving various tasks in practice, including but not limited to information retrieval. This half-day tutorial provides basic concepts of this field and an overview of recent advancements with several applications. In specific, we start with some foundational components and architecture of tool learning (i.e., cognitive tool and physical tool), and then we categorize existing studies in this field into tool-augmented learning and tool-oriented learning, and introduce various learning methods to empower LLMs this kind of capability. Furthermore, we provide several cases about when, what, and how to use tools in different applications. We end with some open challenges and several potential research directions for future studies. We believe this tutorial is suited for both researchers at different stages (introductory, intermediate, and advanced) and industry practitioners who are interested in LLMs and tool learning.},
-        booktitle = {Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval},
-        pages = {2983–2986},
-        numpages = {4},
-        keywords = {language agents, large language models, tool learning},
-        location = {Washington DC, USA},
-        series = {SIGIR '24}
-        }</code></pre>
-  </div>
-</section> -->
-
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="https://github.com/ACL2023-Retrieval-LM" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            Thanks to tutorial of ACL 2023 about <a href="https://acl2023-retrieval-lm.github.io/">retrieval-augmented generation</a>, we use the similar template with minor adjustments.
-          </p>
+        <div class="mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+          <div style="background-color: #e2eeff; padding: 10px; cursor: pointer; font-weight: 500; display: flex; justify-content: space-between; align-items: center;"
+            data-bs-toggle="collapse" data-bs-target="#poster-presentations" aria-expanded="true"
+            aria-controls="poster-presentations">
+            <span>Accepted Papers</span>
+            <i class="bi bi-chevron-up"></i>
+          </div>
+          <div class="collapse" id="poster-presentations">
+            <div style="padding: 15px;">
+              <ul id="posterList" style="margin-bottom: 0;"></ul>
+            </div>
+          </div>
         </div>
       </div>
+    </section> -->
+
+    <!-- <br>
+    <br>
+    <section id="grant">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Student Registration Grant</h2>
+        </div>
+        <p>
+          We are excited to offer a limited number of free full conference, "student early" registrations for NeurIPS 2025, exclusively for full-time students attending in person. This initiative aims to support early-career researchers while fostering diversity, equity, and inclusion (DEI) in the academic community.
+        </p>
+        <h3>Selection Criteria</h3>
+        <p>
+          Applications will be evaluated based on the strength of the submitted materials (see details below). Priority will be given to students presenting papers at our workshop who lack alternative travel support.
+        </p>
+        <h3>How to Apply</h3>
+          We will share more details soon.
+
+        <h3>Registration Grant Recipients</h3>
+        <ul>
+          TBA
+        </ul>
+      </div>
+    </section> -->
+
+
+    <section id="organizers">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Organizers</h2>
+          <p>This workshop is organized by</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_cheng.jpg" alt="Cheng Qian" class="img-fluid">
+              <br><a href="https://qiancheng0.github.io/" style="font-size: 1.2em; color: #00356B;">Cheng Qian</a></br>
+              <p>UIUC</p>
+            </div>
+          </div>
+          <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_emre.jpeg" alt="Emre Can Acikgoz" class="img-fluid">
+              <br><a href="https://emrecanacikgoz.github.io/" style="font-size: 1.2em; color: #00356B;">Emre Can Acikgoz</a></br>
+              <p>UIUC</p>
+            </div>
+          </div>
+           <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_hongru.png" alt="Hongru Wang" class="img-fluid">
+              <br><a href="https://hrwise-nlp.github.io/" style="font-size: 1.2em; color: #00356B;">Hongru Wang</a></br>
+              <p>University of Edinburgh</p>
+            </div>
+          </div>
+          <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_zhenfei.jpg" alt="Zhenfei Yin" class="img-fluid">
+              <br><a href="https://yinzhenfei.github.io/" style="font-size: 1.2em; color: #00356B;">Zhenfei Yin</a></br>
+              <p>University of Oxford</p>
+            </div>
+          </div>
+           <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_manling.jpg" alt="Manling Li" class="img-fluid">
+              <br><a href="https://limanling.github.io/" style="font-size: 1.2em; color: #00356B;">Manling Li</a></br>
+              <p>Northwestern University</p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+           <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_vivian.jpeg" alt="Vivian Chen" class="img-fluid">
+              <br><a href="https://www.csie.ntu.edu.tw/~yvchen/" style="font-size: 1.2em; color: #00356B;">Vivian Chen</a></br>
+              <p>National Taiwan University</p>
+            </div>
+          </div>
+           <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_mengdi.jpeg" alt="Mengdi Wang" class="img-fluid">
+              <br><a href="https://mwang.princeton.edu/" style="font-size: 1.2em; color: #00356B;">Mengdi Wang</a></br>
+              <p>Princeton University</p>
+            </div>
+          </div>
+           <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_dilek.jpeg" alt="Dilek Hakkani-Tur" class="img-fluid">
+              <br><a href="https://siebelschool.illinois.edu/about/people/faculty/dilek" style="font-size: 1.2em; color: #00356B;">Dilek Hakkani-Tur</a></br>
+              <p>UIUC</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <br>
+    <br>
+
+    <section id="advisors">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Advising Board</h2>
+          <p>This workshop is advised by</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_heng.jpg" alt="Heng Ji" class="img-fluid">
+              <br><a href="https://blender.cs.illinois.edu/hengji.html" style="font-size: 1.2em; color: #00356B;">Heng Ji</a></br>
+              <p>UIUC</p>
+            </div>
+          </div>
+          <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_gokhan.jpeg" alt="Gokhan Tur" class="img-fluid">
+              <br><a href="https://siebelschool.illinois.edu/about/people/faculty/gokhan" style="font-size: 1.2em; color: #00356B;">Gokhan Tur</a></br>
+              <p>UIUC</p>
+            </div>
+          </div>
+           <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_kamfai.jpeg" alt="Kam-Fai Wong" class="img-fluid">
+              <br><a href="https://scholar.google.com/citations?user=fyMni2cAAAAJ&hl=en" style="font-size: 1.2em; color: #00356B;">Kam-Fai Wong</a></br>
+              <p>The Chinese University of Hong Kong</p>
+            </div>
+          </div>
+          <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_phil_torr.jpg" alt="Philip Torr" class="img-fluid">
+              <br><a href="https://www.robots.ox.ac.uk/~phpt/" style="font-size: 1.2em; color: #00356B;">Philip Torr</a></br>
+              <p>University of Oxford</p>
+            </div>
+          </div>
+
+           <div class="col-lg col-md-4 col-sm-6 col-6">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
+              <img src="assets/img/organizers/profile_jun.jpg" alt="Jun Wang" class="img-fluid">
+              <br><a href="https://scholar.google.com/citations?user=wIE1tY4AAAAJ&hl=en" style="font-size: 1.2em; color: #00356B;">Jun Wang</a></br>
+              <p>UIUC</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Sponsors
+    <section id="sponsors" class="section-with-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Sponsors</h2>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-4 col-sm-6 col-8">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
+              <img src="assets/img/meta_logo.png" alt="Meta" class="img-fluid">
+              <p style="font-size: 1.2em; font-weight: 500; margin-top: 10px;">Meta</p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-4 col-sm-6 col-8">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
+              <img src="assets/img/orby_ai_logo.png" alt="Orby AI" class="img-fluid">
+              <p style="font-size: 1.2em; font-weight: 500; margin-top: 10px;">Orby AI</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    Partners -->
+    <!-- <section id="partners" class="section-with-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Partners</h2>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-4 col-sm-6 col-8">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
+              <img src="assets/img/sponsors/prime.jpeg" alt="Prime Intellect" class="img-fluid">
+              <p style="font-size: 1.2em; font-weight: 500; margin-top: 10px;">Prime Intellect</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    
+    <br>
+    <br>
+
+
+
+
+  </main><footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        </div>
+      <div class="credits">
+        Template adopted from <a href="https://workshop-multi-turn-interaction.github.io/">MTI-LLM @ NeurIPS 2025</a>
+      </div>
     </div>
-  </div>
-</footer>
-<script src="./static/js/main.js"></script>
-<!-- <script type="module" src="./static/js/main.js"></script> -->
+  </footer><a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // This example assumes accepted_paper.json is located in the same directory as your HTML file.
+    // Adjust the path as necessary.
+    fetch('accepted_paper.json')
+      .then(response => response.json())
+      .then(data => {
+        const posterList = document.getElementById('posterList');
+        
+        // In the snippet, the data in accepted_paper.json is an object with a "notes" array
+        // that holds the accepted papers
+        const notes = data.notes;  // e.g. data.notes = [{ content: {...}, ...}, ...]
+
+        notes.forEach(item => {
+          const title = item.content.title.value;
+          // Authors may be stored as an array in item.content.authors.value or a single string, depending on your JSON
+          // If it's an array, join them
+          const authorsVal = item.content.authors.value;
+          let authors = Array.isArray(authorsVal) ? authorsVal.join(", ") : authorsVal;
+
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <b>${title}</b><br>
+            Authors: ${authors}
+          `;
+          posterList.appendChild(li);
+
+          // Add some spacing after each paper
+          const br = document.createElement('br');
+          posterList.appendChild(br);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading accepted_paper.json:', error);
+      });
+  </script>
 
 </body>
+
 </html>
