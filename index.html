@@ -102,6 +102,23 @@
       object-fit: contain;
       margin-bottom: 15px;
     }
+
+    /* Unified sponsor image styles */
+    #sponsors .supporter-logo{
+      height: 150px;              /* fixed logo box height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #sponsors .supporter-logo img{
+      max-width: 500px;           /* keep your 300px intent */
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 30px;           /* spacing handled by text margin */
+    }
   </style>
   </head>
 
@@ -715,12 +732,12 @@
 
       <div class="container" data-aos="fade-up">
         <div class="section-header">
-          <h2>Sponsors</h2>
+          <h2>Sponsors and Partners</h2>
         </div>
 
         <div class="row supporters-wrap justify-content-center">
 
-          <div class="col-md-6 col-sm-6 col-10">
+          <div class="col-md-4 col-sm-6 col-12">
             <div class="sponsor-item" style="text-align: center;">
               <div class="supporter-logo" data-aos="fade-up" data-aos-delay="100">
                 <img src="assets/img/sponsors/salesforce.png" alt="Salesforce AI Research" class="img-fluid">
@@ -729,12 +746,21 @@
             </div>
           </div>
 
-          <div class="col-md-6 col-sm-6 col-10">
+          <div class="col-md-4 col-sm-6 col-12">
             <div class="sponsor-item" style="text-align: center;">
               <div class="supporter-logo" data-aos="fade-up" data-aos-delay="200">
                 <img src="assets/img/sponsors/oumi.svg" alt="Oumi AI" class="img-fluid">
               </div>
               <p style="font-size: 1.2em; font-weight: 500; margin-top: 10px;">Oumi AI</p>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="sponsor-item" style="text-align: center;">
+              <div class="supporter-logo" data-aos="fade-up" data-aos-delay="200">
+                <img src="assets/img/sponsors/jiqizhixin.png" alt="JiQiZhiXin" class="img-fluid">
+              </div>
+              <p style="font-size: 1.2em; font-weight: 500; margin-top: 10px;">Media Partner: Ji Qi Zhi Xin</p>
             </div>
           </div>
 
