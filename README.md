@@ -1,1 +1,1 @@
-# workshop-llm-reasoning-planning.github.io
+# Lifelong Agent Workshop

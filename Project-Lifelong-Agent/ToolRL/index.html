@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolRL: Reward is All Tool Learning Needs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #faf9f6;
+    --accent: #2563eb;
+    --accent2: #1d4ed8;
+    --muted: #6b7280;
+    --border: #e5e2dc;
+    --card: #ffffff;
+    --tag-gen: #92740c;
+    --tag-sol: #2563eb;
+    --highlight: #eff6ff;
+    --subtle-bg: #f4f2ee;
+  }
+
+  html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 19px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: white; }
+
+  /* --- Hero --- */
+  .hero {
+    position: relative;
+    padding: 100px 0 70px;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, #edf2ff 0%, var(--paper) 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 600px 300px at 20% 40%, rgba(37,99,235,0.05), transparent),
+      radial-gradient(ellipse 500px 400px at 80% 60%, rgba(29,78,216,0.04), transparent);
+    pointer-events: none;
+  }
+
+  .hero .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: inline-block;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.1s;
+  }
+
+  .hero h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    max-width: 820px;
+    margin: 0 auto 12px;
+    letter-spacing: -0.5px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.2s;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 640px;
+    margin: 0 auto 30px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.35s;
+  }
+
+  .authors {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.45s;
+  }
+
+  .authors strong { color: var(--ink); font-weight: 600; }
+
+  .affiliations {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.5s;
+  }
+
+  .hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.6s;
+  }
+
+  .hero-links a {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 9px 22px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .hero-links a.primary { background: var(--ink); color: white; }
+  .hero-links a.primary:hover { background: #2d2d4a; transform: translateY(-1px); }
+  .hero-links a.secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+  .hero-links a.secondary:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+  /* --- Layout --- */
+  .container { max-width: 740px; margin: 0 auto; padding: 0 28px; }
+  .wide-container { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+  /* --- Sections --- */
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.85rem;
+    font-weight: 600;
+    margin-bottom: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+  }
+
+  h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 32px 0 14px;
+    color: var(--ink);
+  }
+
+  p { margin-bottom: 18px; font-weight: 400; }
+  p:last-child { margin-bottom: 0; }
+
+  .lead { font-size: 1.12rem; line-height: 1.8; color: #374151; }
+
+  /* --- Stat Banner --- */
+  .stat-banner {
+    background:
+      radial-gradient(circle at 30% 50%, rgba(30, 58, 138, 0.4), transparent 60%),
+      radial-gradient(circle at 70% 50%, rgba(59, 130, 246, 0.2), transparent 60%),
+      linear-gradient(135deg, #070b1f, #0c1540);
+    padding: 90px 20px;
+  }
+
+  .stat-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .stat-fig { flex: 0 0 420px; display: flex; justify-content: center; align-items: center; }
+
+  .stat-fig-card {
+    background: rgba(255,255,255,0.04);
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 40px rgba(59,130,246,0.15);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stat-fig-img {
+    width: auto;
+    height: 420px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  }
+
+  .stat-text { flex: 0 0 420px; }
+
+  .big-num {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    background: linear-gradient(180deg, #ffffff, #bfdbfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stat-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* --- Reward Decomposition Diagram --- */
+  .diagram-section {
+    background: var(--subtle-bg);
+    padding: 52px 0;
+    text-align: center;
+  }
+
+  .diagram-section .caption {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  .reward-decomp {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 0;
+    max-width: 800px;
+    margin: 0 auto 14px;
+    flex-wrap: wrap;
+  }
+
+  .rbox {
+    padding: 22px 20px;
+    border-radius: 10px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    min-width: 160px;
+    text-align: center;
+  }
+
+  .rbox.total {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    border: none;
+    min-width: 140px;
+  }
+
+  .rbox.format {
+    background: linear-gradient(135deg, #fef9e7, #fdf3d0);
+    color: #92740c;
+    border: 1.5px solid #f5e6a3;
+  }
+
+  .rbox.correct {
+    background: linear-gradient(135deg, #dbeafe, #c7d9f7);
+    color: #1d4ed8;
+    border: 1.5px solid #93c5fd;
+  }
+
+  .rbox.sub {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    color: var(--ink);
+    font-size: 0.82rem;
+    min-width: 120px;
+    padding: 14px 14px;
+  }
+
+  .rbox small {
+    display: block;
+    font-weight: 400;
+    font-size: 0.75rem;
+    margin-top: 4px;
+    opacity: 0.75;
+  }
+
+  .plus-sign, .eq-sign {
+    font-size: 1.8rem;
+    color: var(--muted);
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* --- Tables --- */
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 24px 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  table { width: 100%; border-collapse: collapse; font-family: 'Source Sans 3', sans-serif; font-size: 0.84rem; }
+  thead { background: var(--subtle-bg); }
+
+  th {
+    padding: 11px 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+    border-bottom: 1.5px solid var(--border);
+    white-space: nowrap;
+  }
+  th:first-child { text-align: left; }
+
+  td {
+    padding: 9px 12px;
+    text-align: center;
+    border-bottom: 1px solid #f0ede6;
+    white-space: nowrap;
+  }
+  td:first-child { text-align: left; font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+
+  .row-highlight { background: rgba(37,99,235,0.05); }
+  .row-highlight td { font-weight: 600; }
+
+  .gain { color: #16a34a; font-weight: 600; }
+  .loss { color: #c0392b; font-weight: 600; }
+  .best { color: var(--accent); font-weight: 700; }
+
+  .ours-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    background: var(--accent);
+    color: white;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* --- Findings --- */
+  .finding {
+    background: var(--card);
+    border-left: 3.5px solid var(--accent);
+    padding: 22px 26px;
+    margin: 28px 0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  .finding .finding-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .finding p { font-size: 1rem; line-height: 1.65; margin: 0; }
+
+  /* --- Metric callouts --- */
+  .metric-row { display: flex; gap: 24px; margin: 28px 0; flex-wrap: wrap; }
+
+  .metric-card {
+    flex: 1;
+    min-width: 160px;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  .metric-card .num {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .metric-card .label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* --- Code block --- */
+  .codeblock-wrapper { position: relative; margin-top: 16px; }
+
+  .codeblock-shell {
+    background: #0d1117;
+    color: #c9d1d9;
+    padding: 18px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    border: 1px solid #30363d;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: #30363d; }
+
+  /* --- Footer --- */
+  footer {
+    text-align: center;
+    padding: 48px 28px;
+    border-top: 1px solid var(--border);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* --- Animations --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .stat-banner-inner { flex-direction: column; gap: 30px; }
+    .stat-fig { flex: none; width: 100%; }
+    .stat-text { flex: none; }
+    .metric-row { flex-direction: column; }
+    .reward-decomp { flex-direction: column; align-items: center; gap: 8px; }
+    .plus-sign, .eq-sign { transform: rotate(90deg); }
+  }
+
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .hero { padding: 70px 0 50px; }
+    .hero h1 { font-size: 2rem; }
+    section { padding: 40px 0; }
+    th, td { padding: 8px 8px; font-size: 0.76rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="container">
+    <div class="label">Part of Project Lifelong Agents</div>
+    <h1><em>ToolRL:</em> Reward is All Tool Learning Needs</h1>
+    <p class="subtitle">The first systematic study of reward design for RL-based tool-integrated reasoning — unlocking emergent agentic behaviors through principled fine-grained reward signals.</p>
+    <p class="authors">
+      <strong>Cheng Qian</strong>,
+      <strong>Emre Can Acikgoz</strong>,
+      <strong>Qi He</strong>,
+      <strong>Hongru Wang</strong>,
+      <strong>Xiusi Chen</strong>,
+      <strong>Dilek Hakkani-Tür</strong>,
+      <strong>Gokhan Tur</strong>,
+      <strong>Heng Ji</strong>
+    </p>
+    <p class="affiliations">University of Illinois Urbana-Champaign</p>
+    <div class="hero-links">
+      <a href="https://arxiv.org/abs/2504.13958" class="primary">📄 Paper</a>
+      <a href="https://github.com/qiancheng0/ToolRL" class="secondary">💻 Code</a>
+      <a href="#citation" class="secondary">🙌 Cite</a>
+      <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/index.html" class="secondary">♾️ Project Lifelong Agent</a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== STAT BANNER ==================== -->
+<div class="stat-banner">
+  <div class="stat-banner-inner">
+
+    <div class="stat-fig">
+      <div class="stat-fig-card">
+        <img src="intro.png" class="stat-fig-img">
+      </div>
+    </div>
+
+    <div class="stat-text">
+      <div class="big-num">Fine-Grained<br>Rewards.<br>Real-World Tools.</div>
+      <p>
+        SFT-trained tool agents imitate trajectories but fail to <em>reason</em> about tools. ToolRL trains LLMs with RL from scratch using a principled, multi-level reward that scores tool name selection, parameter schemas, and parameter values — leading to <strong style="color:#bfdbfe;">17% gains over base models</strong> and <strong style="color:#bfdbfe;">15% gains over SFT</strong>.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== SFT vs RL TEASER ==================== -->
+<section style="padding: 70px 0 60px;">
+  <div class="container fade-in" style="display:flex; justify-content:center;">
+    <div style="background: linear-gradient(135deg, #0d1b3e, #1e3a8a); border-radius: 18px; padding: 32px 40px; box-shadow: 0 16px 48px rgba(0,0,0,0.18); max-width: 540px; width: 100%; color:rgba(255,255,255,0.9); font-family:'Source Sans 3',sans-serif;">
+      <div style="font-size:0.78rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:16px; text-align:center;">SFT vs. RL on Tool-Integrated Reasoning</div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div>
+          <div style="font-size:0.8rem; color:rgba(255,255,255,0.6); margin-bottom:5px;">SFT on distilled trajectories</div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="height:30px; width:55%; background:linear-gradient(90deg,#ef4444,#f87171); border-radius:5px; display:flex; align-items:center; padding:0 12px; font-size:0.78rem; font-weight:600;">Overthinker &nbsp; "but wait..."</div>
+            <div style="font-size:0.75rem; color:rgba(255,255,255,0.55);">❌ Fails to reject bad tools</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; color:rgba(255,255,255,0.6); margin-bottom:5px;">ToolRL — GRPO Cold Start</div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="height:30px; width:82%; background:linear-gradient(90deg,#1d4ed8,#3b82f6); border-radius:5px; display:flex; align-items:center; padding:0 12px; font-size:0.78rem; font-weight:600;">Strategic reasoner &nbsp; ✓</div>
+            <div style="font-size:0.75rem; color:rgba(255,255,255,0.55);">✅ Generalizes reliably</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:20px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <div style="background:rgba(255,255,255,0.1); border-radius:10px; padding:12px 16px; text-align:center; font-size:0.8rem;">
+          <div style="font-size:1.5rem; margin-bottom:5px;">🎯</div>
+          BFCL<br><span style="font-weight:700; color:#bfdbfe;">58.4%</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:10px; padding:12px 16px; text-align:center; font-size:0.8rem;">
+          <div style="font-size:1.5rem; margin-bottom:5px;">🏦</div>
+          API-Bank<br><span style="font-weight:700; color:#bfdbfe;">72.0%</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:10px; padding:12px 16px; text-align:center; font-size:0.8rem;">
+          <div style="font-size:1.5rem; margin-bottom:5px;">🗺️</div>
+          Bamboogle<br><span style="font-weight:700; color:#bfdbfe;">72.0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABSTRACT ==================== -->
+<section>
+  <div class="container fade-in">
+    <span class="section-num">Abstract</span>
+    <h2>TL;DR</h2>
+    <p class="lead">
+      LLMs increasingly need to use external tools: search engines, calculators, code interpreters, APIs. While supervised fine-tuning (SFT) teaches models what tool calls look like, it fails to teach agents <em>how to reason about using tools</em> — leading to overfitting, overthinking, and poor generalization.
+    </p>
+    <p class="lead">
+      <strong>ToolRL</strong> presents the first systematic study of <em>reward design</em> for tool-integrated reasoning (TIR) under the RL paradigm. We explore reward type, scale, granularity, and temporal dynamics — and propose a principled decomposed reward that drives stable, generalizing, emergent tool-use behavior through GRPO training.
+    </p>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="num">+17%</div>
+        <div class="label">Over base<br>models</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">+15%</div>
+        <div class="label">Over SFT<br>baselines</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">GRPO</div>
+        <div class="label">Cold start, no<br>SFT pre-training</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">4</div>
+        <div class="label">Model families<br>evaluated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REWARD DESIGN ==================== -->
+<div class="diagram-section">
+  <div class="wide-container fade-in">
+    <span class="section-num" style="display:block; text-align:center;">Core Contribution</span>
+    <h2 style="text-align:center; margin-bottom:30px;">Fine-Grained Reward Decomposition</h2>
+
+    <div class="reward-decomp">
+      <div class="rbox total">
+        🏆 R<sub>final</sub>
+        <small>∈ [−3, 4]</small>
+      </div>
+      <div class="eq-sign">=</div>
+      <div class="rbox format">
+        📋 R<sub>format</sub>
+        <small>∈ {0, 1}</small>
+      </div>
+      <div class="plus-sign">+</div>
+      <div class="rbox correct">
+        ✅ R<sub>correct</sub>
+        <small>∈ [−3, 3]</small>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:20px; max-width:720px; margin-left:auto; margin-right:auto;">
+      <div class="rbox sub">
+        🏷️ Tool Name<br><small>Jaccard overlap of predicted<br>vs. ground-truth tool names</small>
+      </div>
+      <div class="plus-sign" style="font-size:1.2rem;">+</div>
+      <div class="rbox sub">
+        🔑 Param Names<br><small>Parameter key overlap across<br>all ground-truth calls</small>
+      </div>
+      <div class="plus-sign" style="font-size:1.2rem;">+</div>
+      <div class="rbox sub">
+        💎 Param Values<br><small>Exact value match per key<br>in matched tool calls</small>
+      </div>
+    </div>
+
+    <p class="caption" style="margin-top:16px;">Unlike binary rewards, ToolRL's decomposed correctness signal separately evaluates <em>what</em> to call, <em>how</em> to parameterize it, and <em>what values</em> to pass — providing richer feedback for complex multi-tool interactions.</p>
+  </div>
+</div>
+
+<!-- ==================== APPROACH ==================== -->
+<section>
+  <div class="container fade-in">
+    <span class="section-num">Approach</span>
+    <h2>Why Reward Design Matters for Tool Use</h2>
+    <p>Mathematical reasoning rewards are simple: is the final answer correct? Tool-integrated reasoning is fundamentally different. A single turn may invoke multiple tools with complex parameters. Coarse binary rewards fail to distinguish <em>correct tool, wrong parameter</em> from <em>wrong tool entirely</em>. ToolRL addresses this with a four-dimensional reward analysis:</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:28px 0;">
+      <div style="background:var(--card); border:1.5px solid var(--border); border-radius:10px; padding:20px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent); margin-bottom:8px;">DIMENSION 1</div>
+        <strong>Reward Type</strong>
+        <p style="font-size:0.9rem; color:var(--muted); margin-top:6px; margin-bottom:0; line-height:1.5;">What aspect to reward: format compliance, tool selection correctness, or parameter accuracy.</p>
+      </div>
+      <div style="background:var(--card); border:1.5px solid var(--border); border-radius:10px; padding:20px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent); margin-bottom:8px;">DIMENSION 2</div>
+        <strong>Reward Scale</strong>
+        <p style="font-size:0.9rem; color:var(--muted); margin-top:6px; margin-bottom:0; line-height:1.5;">How strongly to reward. Dynamic scaling helps models transition from simple to complex behavior.</p>
+      </div>
+      <div style="background:var(--card); border:1.5px solid var(--border); border-radius:10px; padding:20px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent); margin-bottom:8px;">DIMENSION 3</div>
+        <strong>Reward Granularity</strong>
+        <p style="font-size:0.9rem; color:var(--muted); margin-top:6px; margin-bottom:0; line-height:1.5;">How detailed the signal. Fine-grained decomposition leads to more stable, effective learning.</p>
+      </div>
+      <div style="background:var(--card); border:1.5px solid var(--border); border-radius:10px; padding:20px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent); margin-bottom:8px;">DIMENSION 4</div>
+        <strong>Reward Dynamics</strong>
+        <p style="font-size:0.9rem; color:var(--muted); margin-top:6px; margin-bottom:0; line-height:1.5;">How rewards evolve over training. Curriculum-style dynamics prevent plateau and collapse.</p>
+      </div>
+    </div>
+
+    <h3>Training with GRPO</h3>
+    <p>ToolRL applies Group Relative Policy Optimization (GRPO), which normalizes advantages within groups of responses to the same query, reducing variance without a separate value function. We train from a cold start — no SFT pre-initialization — and find this leads to better generalization than SFT-initialized RL, because SFT memorization actively hurts exploration.</p>
+  </div>
+</section>
+
+<!-- ==================== MAIN RESULTS ==================== -->
+<section>
+  <div class="wide-container fade-in">
+    <span class="section-num">Results</span>
+    <h2>BFCL Benchmark Results</h2>
+    <p>We evaluate on BFCL V3 (Berkeley Function Calling Leaderboard), which covers non-live AST evaluation, live API testing, multi-turn conversations, and relevance/irrelevance detection. GRPO Cold Start consistently achieves the highest overall accuracy across all four model families.</p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Model / Method</th>
+            <th>Overall Acc</th>
+            <th>Non-Live AST</th>
+            <th>Live Acc</th>
+            <th>Multi-Turn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Qwen2.5-1.5B (Raw)</td>
+            <td>19.41%</td><td>16.00%</td><td>35.58%</td><td>0.00%</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5-1.5B (SFT 4k)</td>
+            <td>40.67%</td><td>59.94%</td><td>59.31%</td><td>1.00%</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>Qwen2.5-1.5B <span class="ours-badge">GRPO Cold Start</span></td>
+            <td class="best">46.20%</td><td class="best">77.96%</td><td class="best">60.73%</td><td class="best">2.25%</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5-7B (Raw)</td>
+            <td>41.97%</td><td>66.02%</td><td>53.51%</td><td>4.25%</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5-7B (SFT 4k)</td>
+            <td>36.53%</td><td>45.15%</td><td>57.13%</td><td>0.75%</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>Qwen2.5-7B <span class="ours-badge">GRPO Cold Start</span></td>
+            <td class="best">58.38%</td><td class="best">86.17%</td><td class="best">74.90%</td><td class="best">18.12%</td>
+          </tr>
+          <tr>
+            <td>Llama-3.2-3B (Raw)</td>
+            <td>22.09%</td><td>17.44%</td><td>43.85%</td><td>0.00%</td>
+          </tr>
+          <tr>
+            <td>Llama-3.2-3B (SFT 4k)</td>
+            <td>44.16%</td><td>65.42%</td><td>63.04%</td><td>1.38%</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>Llama-3.2-3B <span class="ours-badge">GRPO Cold Start</span></td>
+            <td class="best">44.10%</td><td class="best">74.38%</td><td class="best">56.86%</td><td class="best">1.37%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin-top:40px;">API-Bank & Bamboogle Results</h2>
+    <p>We also evaluate on API-Bank (a three-level API composition benchmark) and Bamboogle (open-domain QA requiring search tools). GRPO Cold Start achieves the highest scores in both benchmarks, demonstrating that the reward design generalizes beyond benchmark format.</p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Model / Method</th>
+            <th>API-Bank Overall</th>
+            <th>Level 1</th>
+            <th>Level 2</th>
+            <th>Level 3</th>
+            <th>Bamboogle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Qwen2.5-1.5B (Raw)</td>
+            <td>30.65%</td><td>28.32%</td><td>35.82%</td><td>35.11%</td><td>20.80%</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5-1.5B (SFT 4k)</td>
+            <td>47.07%</td><td>52.88%</td><td>52.24%</td><td>26.72%</td><td>23.20%</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>Qwen2.5-1.5B <span class="ours-badge">GRPO Cold Start</span></td>
+            <td class="best">63.15%</td><td class="best">70.68%</td><td class="best">61.19%</td><td class="best">41.22%</td><td class="best">44.00%</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5-3B (Raw)</td>
+            <td>51.59%</td><td>59.65%</td><td>32.84%</td><td>36.64%</td><td>52.00%</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>Qwen2.5-3B <span class="ours-badge">GRPO Cold Start</span></td>
+            <td class="best">67.00%</td><td class="best">73.43%</td><td class="best">67.16%</td><td class="best">47.33%</td><td class="best">60.00%</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5-7B (Raw)</td>
+            <td>62.48%</td><td>70.68%</td><td>49.25%</td><td>44.27%</td><td>69.60%</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>Qwen2.5-7B <span class="ours-badge">GRPO Cold Start</span></td>
+            <td class="best">64.66%</td><td class="best">76.69%</td><td class="best">64.18%</td><td class="best">38.93%</td><td class="best">72.00%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== KEY FINDINGS ==================== -->
+<section style="background: var(--subtle-bg);">
+  <div class="container fade-in">
+    <span class="section-num">Insights</span>
+    <h2>Key Findings</h2>
+
+    <div class="finding">
+      <span class="finding-label">Finding 1</span>
+      <p><strong>Longer reasoning traces are not inherently better.</strong> Adding length rewards degrades performance. In tool-integrated reasoning, verbosity from reward hacking leads to unfocused reasoning chains. The model should be taught to think precisely, not at length.</p>
+    </div>
+
+    <div class="finding">
+      <span class="finding-label">Finding 2</span>
+      <p><strong>Dynamic reward scaling helps transition from simple to complex behavior.</strong> Static reward scales either undershoot (too easy tasks dominate) or overshoot (reward collapse on hard tasks). Gradually increasing scale encourages the model to first master format and simple calls before tackling multi-parameter, multi-tool scenarios.</p>
+    </div>
+
+    <div class="finding">
+      <span class="finding-label">Finding 3</span>
+      <p><strong>Fine-grained reward decomposition is the most important single design choice.</strong> Splitting the correctness signal into name matching, parameter key matching, and value matching — rather than using a single binary reward — leads to significantly more stable training and better final accuracy. The model can now learn <em>partially correct</em> calls rather than treating everything as pass/fail.</p>
+    </div>
+
+    <div class="finding">
+      <span class="finding-label">Finding 4</span>
+      <p><strong>GRPO cold start beats SFT-initialized GRPO.</strong> Counterintuitively, starting RL from the raw instruct model outperforms starting from an SFT checkpoint. SFT-initialized models achieve higher training rewards (due to distributional alignment) but generalize worse — a signature of memorization. Cold start forces the model to genuinely explore and learn.</p>
+    </div>
+
+    <div class="finding">
+      <span class="finding-label">Finding 5</span>
+      <p><strong>Emergent behaviors arise: proactiveness and metacognitive reasoning.</strong> Models trained with ToolRL begin to exhibit spontaneous behaviors not seen in SFT baselines — voluntarily calling additional verification tools, rejecting inappropriate tool invocations, and reasoning out loud about tool selection trade-offs. These are properties of genuine reasoning, not memorized patterns.</p>
+    </div>
+
+    <div class="finding">
+      <span class="finding-label">Finding 6</span>
+      <p><strong>GRPO is consistently more stable than PPO for cold-start tool learning.</strong> PPO with a cold start shows inconsistency across model families and benefits more from SFT initialization. GRPO's group-wise advantage normalization removes the need for a value function, making it particularly well-suited for the diverse reward distributions of tool-calling tasks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CITATION ==================== -->
+<section id="citation">
+  <div class="container fade-in">
+    <span class="section-num">Citation</span>
+    <p>If you find ToolRL useful in your research, please consider citing our work.</p>
+    <div class="codeblock-wrapper">
+      <button class="copy-btn" onclick="copyBibtex()">Copy</button>
+      <pre class="codeblock-shell"><code id="bibtexBlock">@article{qian2025toolrl,
+  title   = {ToolRL: Reward is All Tool Learning Needs},
+  author  = {Qian, Cheng and Acikgoz, Emre Can and He, Qi and Wang, Hongru and Chen, Xiusi and Hakkani-T{\"u}r, Dilek and Tur, Gokhan and Ji, Heng},
+  journal = {arXiv preprint arXiv:2504.13958},
+  year    = {2025}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div>
+    <em>"The right reward teaches not what to output, but how to think about acting."</em>
+  </div>
+  <div style="margin-top:16px;">
+    © 2025 ToolRL Project · University of Illinois Urbana-Champaign<br>
+    Released under the Apache License 2.0.
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  function copyBibtex() {
+    const text = document.getElementById('bibtexBlock').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
