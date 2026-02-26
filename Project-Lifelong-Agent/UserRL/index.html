@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UserRL: Training Interactive User-Centric Agent via Reinforcement Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1612;
+    --paper: #faf9f6;
+    --accent: #c2410c;
+    --accent2: #9a3412;
+    --muted: #6b7280;
+    --border: #e5e2dc;
+    --card: #ffffff;
+    --highlight: #fff7ed;
+    --subtle-bg: #f6f2ee;
+  }
+
+  html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 19px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: white; }
+
+  /* --- Hero --- */
+  .hero {
+    position: relative;
+    padding: 100px 0 70px;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, #fff7ed 0%, var(--paper) 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 600px 300px at 20% 40%, rgba(194,65,12,0.06), transparent),
+      radial-gradient(ellipse 500px 400px at 80% 60%, rgba(154,52,18,0.04), transparent);
+    pointer-events: none;
+  }
+
+  .hero .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: inline-block;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.1s;
+  }
+
+  .hero h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    max-width: 860px;
+    margin: 0 auto 12px;
+    letter-spacing: -0.5px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.2s;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 660px;
+    margin: 0 auto 30px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.35s;
+  }
+
+  .authors {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.45s;
+  }
+
+  .authors strong { color: var(--ink); font-weight: 600; }
+
+  .affiliations {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.5s;
+  }
+
+  .hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.6s;
+  }
+
+  .hero-links a {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 9px 22px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .hero-links a.primary { background: var(--ink); color: white; }
+  .hero-links a.primary:hover { background: #2d2410; transform: translateY(-1px); }
+  .hero-links a.secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+  .hero-links a.secondary:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+  /* --- Layout --- */
+  .container { max-width: 740px; margin: 0 auto; padding: 0 28px; }
+  .wide-container { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+  /* --- Sections --- */
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.85rem;
+    font-weight: 600;
+    margin-bottom: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+  }
+
+  h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 32px 0 14px;
+    color: var(--ink);
+  }
+
+  p { margin-bottom: 18px; font-weight: 400; }
+  p:last-child { margin-bottom: 0; }
+
+  .lead { font-size: 1.12rem; line-height: 1.8; color: #374151; }
+
+  /* --- Stat Banner --- */
+  .stat-banner {
+    background:
+      radial-gradient(circle at 30% 50%, rgba(154, 52, 18, 0.45), transparent 60%),
+      radial-gradient(circle at 70% 50%, rgba(194, 65, 12, 0.25), transparent 60%),
+      linear-gradient(135deg, #1c0a04, #3a1206);
+    padding: 90px 20px;
+  }
+
+  .stat-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .stat-fig { flex: 0 0 420px; display: flex; justify-content: center; align-items: center; }
+
+  .stat-fig-card {
+    background: rgba(255,255,255,0.04);
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 40px rgba(194,65,12,0.18);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stat-fig-img {
+    width: auto;
+    height: 420px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  }
+
+  .stat-text { flex: 0 0 420px; }
+
+  .big-num {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    background: linear-gradient(180deg, #ffffff, #fed7aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stat-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* --- Framework Diagram --- */
+  .diagram-section {
+    background: var(--subtle-bg);
+    padding: 52px 0;
+    text-align: center;
+  }
+
+  .diagram-section .caption {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  /* --- Tables --- */
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 24px 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  table { width: 100%; border-collapse: collapse; font-family: 'Source Sans 3', sans-serif; font-size: 0.84rem; }
+  thead { background: var(--subtle-bg); }
+
+  th {
+    padding: 11px 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+    border-bottom: 1.5px solid var(--border);
+    white-space: nowrap;
+  }
+  th:first-child { text-align: left; }
+
+  td {
+    padding: 9px 12px;
+    text-align: center;
+    border-bottom: 1px solid #f0ede6;
+    white-space: nowrap;
+  }
+  td:first-child { text-align: left; font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+
+  .row-highlight { background: rgba(194,65,12,0.05); }
+  .row-highlight td { font-weight: 600; }
+
+  .gain { color: #16a34a; font-weight: 600; }
+  .loss { color: #c0392b; font-weight: 600; }
+  .best { color: var(--accent); font-weight: 700; }
+  .neutral { color: var(--muted); }
+
+  .ours-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    background: var(--accent);
+    color: white;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* --- Findings --- */
+  .finding {
+    background: var(--card);
+    border-left: 3.5px solid var(--accent);
+    padding: 22px 26px;
+    margin: 28px 0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  .finding .finding-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .finding p { font-size: 1rem; line-height: 1.65; margin: 0; }
+
+  /* --- Metric callouts --- */
+  .metric-row { display: flex; gap: 24px; margin: 28px 0; flex-wrap: wrap; }
+
+  .metric-card {
+    flex: 1;
+    min-width: 160px;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  .metric-card .num {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .metric-card .label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* --- Code block --- */
+  .codeblock-wrapper { position: relative; margin-top: 16px; }
+
+  .codeblock-shell {
+    background: #0d1117;
+    color: #c9d1d9;
+    padding: 18px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    border: 1px solid #30363d;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: #30363d; }
+
+  /* --- Footer --- */
+  footer {
+    text-align: center;
+    padding: 48px 28px;
+    border-top: 1px solid var(--border);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* --- Animations --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .stat-banner-inner { flex-direction: column; gap: 30px; }
+    .stat-fig { flex: none; width: 100%; }
+    .stat-text { flex: none; }
+    .metric-row { flex-direction: column; }
+  }
+
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .hero { padding: 70px 0 50px; }
+    .hero h1 { font-size: 2rem; }
+    section { padding: 40px 0; }
+    th, td { padding: 8px 8px; font-size: 0.76rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="container">
+    <div class="label">Part of Project Lifelong Agents</div>
+    <h1><em>UserRL:</em> Training Interactive User-Centric Agent via Reinforcement Learning</h1>
+    <p class="subtitle">A unified framework for training and evaluating user-centric LLM agents through standardized gym environments, simulated users, and carefully designed RL rewards.</p>
+    <p class="authors">
+      <strong>Cheng Qian</strong><sup>1</sup>,
+      <strong>Zuxin Liu</strong><sup>2</sup>,
+      <strong>Akshara Prabhakar</strong><sup>2</sup>,
+      <strong>Jielin Qiu</strong><sup>2</sup>,
+      <strong>Zhiwei Liu</strong><sup>2</sup>,
+      <strong>Haolin Chen</strong><sup>2</sup>,
+      <strong>Shirley Kokane</strong><sup>2</sup>,
+      <strong>Heng Ji</strong><sup>1</sup>,
+      <strong>Weiran Yao</strong><sup>2</sup>,
+      <strong>Shelby Heinecke</strong><sup>2</sup>,
+      <strong>Silvio Savarese</strong><sup>2</sup>,
+      <strong>Caiming Xiong</strong><sup>2</sup>,
+      <strong>Huan Wang</strong><sup>2</sup>
+    </p>
+    <p class="affiliations"><sup>1</sup>University of Illinois Urbana-Champaign &nbsp;·&nbsp; <sup>2</sup>Salesforce AI Research</p>
+    <div class="hero-links">
+      <a href="https://arxiv.org/abs/2509.19736" class="primary">📄 Paper</a>
+      <a href="https://arxiv.org/abs/2507.22034" class="secondary">📊 UserBench</a>
+      <a href="#citation" class="secondary">🙌 Cite</a>
+      <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/index.html" class="secondary">♾️ Project Lifelong Agent</a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== STAT BANNER ==================== -->
+<div class="stat-banner">
+  <div class="stat-banner-inner">
+
+    <div class="stat-fig">
+      <div class="stat-fig-card">
+        <img src="intro.png" class="stat-fig-img">
+      </div>
+    </div>
+
+    <div class="stat-text">
+      <div class="big-num">User-First.<br>Multi-Turn.<br>RL-Trained.</div>
+      <p>
+        Most RL agents are trained to <em>complete tasks</em> — not to <em>satisfy users</em>. UserRL bridges this gap by pairing standardized gym environments with simulated users, training agents that can handle diverse, dynamic, multi-turn interactions via GRPO — unlocking <strong style="color:#fed7aa;">SFT cold-start critical capabilities</strong> and <strong style="color:#fed7aa;">deliberate trajectory scoring</strong>.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== INTERACTION LOOP TEASER ==================== -->
+<section style="padding: 70px 0 60px;">
+  <div class="container fade-in" style="display:flex; justify-content:center;">
+    <div style="background: linear-gradient(135deg, #1c0a04, #3a1206); border-radius: 18px; padding: 32px 40px; box-shadow: 0 16px 48px rgba(0,0,0,0.18); max-width: 500px; width: 100%; color:rgba(255,255,255,0.9); font-family:'Source Sans 3',sans-serif;">
+      <div style="font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:16px; text-align:center;">UserRL — Multi-Turn Interaction Loop</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="background:rgba(194,65,12,0.2); border:1px solid rgba(194,65,12,0.45); border-radius:8px; padding:12px 16px; display:flex; align-items:center; gap:12px;">
+          <div style="font-size:1.5rem;">👤</div>
+        <div>
+            <div style="font-weight:700; font-size:0.9rem;">Simulated User</div>
+            <div style="font-size:0.75rem; opacity:0.7;">Sends requests, evaluates responses</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:center; gap:8px; align-items:center;">
+          <div style="width:2px; height:20px; background:rgba(255,255,255,0.15); margin:0 auto;"></div>
+          <div style="font-size:0.72rem; color:rgba(255,255,255,0.4); white-space:nowrap;">multi-turn dialogue</div>
+          <div style="width:2px; height:20px; background:rgba(255,255,255,0.15); margin:0 auto;"></div>
+        </div>
+        <div style="background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.35); border-radius:8px; padding:12px 16px; display:flex; align-items:center; gap:12px;">
+          <div style="font-size:1.5rem;">🤖</div>
+        <div>
+            <div style="font-weight:700; font-size:0.9rem;">LLM Agent</div>
+            <div style="font-size:0.75rem; opacity:0.7;">Responds, clarifies, takes action</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; margin-top:4px;">
+          <div style="flex:1; background:rgba(255,255,255,0.08); border-radius:7px; padding:10px 12px; text-align:center; font-size:0.75rem;">
+            <div style="font-size:1.2rem; margin-bottom:4px;">🎯</div>
+            <div style="font-weight:600; color:#fed7aa;">Turn Reward</div>
+            <div style="opacity:0.6; margin-top:2px;">Per-step signal</div>
+      </div>
+          <div style="flex:1; background:rgba(255,255,255,0.08); border-radius:7px; padding:10px 12px; text-align:center; font-size:0.75rem;">
+            <div style="font-size:1.2rem; margin-bottom:4px;">📈</div>
+            <div style="font-weight:600; color:#fed7aa;">Traj. Score</div>
+            <div style="opacity:0.6; margin-top:2px;">Sequence-level</div>
+        </div>
+          <div style="flex:1; background:rgba(255,255,255,0.08); border-radius:7px; padding:10px 12px; text-align:center; font-size:0.75rem;">
+            <div style="font-size:1.2rem; margin-bottom:4px;">⚙️</div>
+            <div style="font-weight:600; color:#fed7aa;">GRPO</div>
+            <div style="opacity:0.6; margin-top:2px;">RL optimizer</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABSTRACT ==================== -->
+<section>
+  <div class="container fade-in">
+    <span class="section-num">Abstract</span>
+    <h2>TL;DR</h2>
+    <p class="lead">
+      Reinforcement learning has shown promise in training agentic models for dynamic, multi-turn interactions — but most existing frameworks optimize for <em>task completion</em>, not <em>user satisfaction</em>. The diversity and dynamics of real user interactions pose fundamentally different challenges.
+    </p>
+    <p class="lead">
+      <strong>UserRL</strong> proposes a unified framework for training and evaluating user-centric agents through standardized gym environments paired with simulated users. By systematically varying turn-level reward assignment and trajectory-level score calculation, UserRL reveals how different reward formulations affect learning under GRPO — establishing a practical pathway for building robust, user-serving agentic models.
+    </p>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <div class="num">0.565</div>
+        <div class="label">Best avg. score<br>(Qwen3-8B trained)</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">+81%</div>
+        <div class="label">Over raw open-source<br>Qwen3 models</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">+20%</div>
+        <div class="label">Over best closed-source<br>(Gemini-2.5-Pro)</div>
+      </div>
+      <div class="metric-card">
+        <div class="num">8 Gyms</div>
+        <div class="label">Diverse user-centric<br>evaluation environments</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FRAMEWORK ==================== -->
+<div class="diagram-section">
+  <div class="wide-container fade-in">
+    <span class="section-num" style="display:block; text-align:center;">Core Framework</span>
+    <h2 style="text-align:center; margin-bottom:30px;">UserRL: Gym Environments × Simulated Users × RL</h2>
+
+    <div style="display:flex; justify-content:center; align-items:stretch; gap:16px; flex-wrap:wrap; max-width:900px; margin:0 auto 20px;">
+      <div style="flex:1; min-width:200px; background:var(--card); border:1.5px solid var(--border); border-radius:10px; padding:22px 20px; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:10px;">🏋️</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--accent); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px;">Gym Environments</div>
+        <p style="font-family:'Source Sans 3',sans-serif; font-size:0.88rem; color:var(--muted); line-height:1.55; margin:0;">Standardized multi-turn interaction environments built on <strong style="color:var(--ink);">UserBench</strong> — covering diverse user-assistance tasks with reproducible evaluation protocols.</p>
+      </div>
+      <div style="flex:1; min-width:200px; background:var(--card); border:1.5px solid var(--border); border-radius:10px; padding:22px 20px; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:10px;">🎭</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--accent); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px;">Simulated Users</div>
+        <p style="font-family:'Source Sans 3',sans-serif; font-size:0.88rem; color:var(--muted); line-height:1.55; margin:0;">LLM-based user proxies (GPT-4o or Qwen3-32B) that generate realistic requests, respond to agent clarifications, and provide feedback signals for reward computation.</p>
+      </div>
+      <div style="flex:1; min-width:200px; background:var(--card); border:1.5px solid var(--border); border-radius:10px; padding:22px 20px; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:10px;">🎯</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--accent); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px;">Reward Design</div>
+        <p style="font-family:'Source Sans 3',sans-serif; font-size:0.88rem; color:var(--muted); line-height:1.55; margin:0;">Systematic variation of <strong style="color:var(--ink);">turn-level</strong> reward assignment and <strong style="color:var(--ink);">trajectory-level</strong> score calculation — analyzed for impact on GRPO learning stability and final performance.</p>
+      </div>
+    </div>
+
+    <p class="caption" style="margin-top:16px; text-align:center;">UserRL builds upon <a href="https://arxiv.org/abs/2507.22034" style="color:var(--accent); text-decoration:none;">UserBench</a> — a comprehensive benchmark for evaluating user-centric agent capabilities across 15 task types and multiple interaction modes.</p>
+  </div>
+</div>
+
+<!-- ==================== APPROACH ==================== -->
+<section>
+  <div class="container fade-in">
+    <span class="section-num">Approach</span>
+    <h2>Reward Design for Multi-Turn User Interaction</h2>
+    <p>User-centric tasks differ fundamentally from task-completion benchmarks: success is not a binary flag at the end of a trajectory — it accumulates across turns, depends on user-side signals, and is sensitive to <em>how</em> the agent communicates, not just <em>what</em> it ultimately produces. UserRL systematically studies two reward design dimensions:</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:28px 0;">
+      <div style="background:var(--card); border:1.5px solid var(--border); border-radius:10px; padding:20px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent); margin-bottom:8px;">DIMENSION 1</div>
+        <strong>Turn-Level Reward Assignment</strong>
+        <p style="font-size:0.9rem; color:var(--muted); margin-top:6px; margin-bottom:0; line-height:1.5;">How to assign rewards within a trajectory — uniform distribution, last-turn only, or feedback-weighted. Controls how the agent attributes value to individual interaction steps.</p>
+      </div>
+      <div style="background:var(--card); border:1.5px solid var(--border); border-radius:10px; padding:20px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent); margin-bottom:8px;">DIMENSION 2</div>
+        <strong>Trajectory-Level Score Calculation</strong>
+        <p style="font-size:0.9rem; color:var(--muted); margin-top:6px; margin-bottom:0; line-height:1.5;">How to aggregate interaction quality into a scalar training signal — average, minimum, or deliberate scoring. Deliberate scoring emphasizes the most informative conversational turns.</p>
+      </div>
+      </div>
+
+    <h3>Training with GRPO on Simulated Users</h3>
+    <p>UserRL applies Group Relative Policy Optimization (GRPO) on trajectories generated by rolling out the agent against simulated users. The simulated user serves as both an interaction partner and a reward signal generator — evaluating agent responses turn by turn. Two simulator options are studied: <strong>GPT-4o</strong> (strong, closed-source) and <strong>Qwen3-32B</strong> (open-source, cost-effective). Both produce transferable training signal, but Qwen3-32B offers a practical pathway to cost-effective and reproducible training.</p>
+
+    <h3>SFT Cold Start: The Essential Precursor</h3>
+    <p>A critical finding of UserRL is that <strong>SFT pre-training is not optional</strong> for multi-turn interaction RL. Without an SFT cold start, models lack the basic dialogue competence necessary to generate meaningful multi-turn trajectories — making GRPO's group-relative advantage computation degenerate. SFT provides the initial interaction ability that RL then refines and extends far beyond what SFT alone achieves.</p>
+      </div>
+</section>
+
+<!-- ==================== MAIN RESULTS ==================== -->
+<section>
+  <div class="wide-container fade-in">
+    <span class="section-num">Results</span>
+    <h2>Gym Evaluation: Trained Agents Dominate Closed-Source Baselines</h2>
+    <p>We evaluate all models across 8 UserBench Gym environments — 4 held-in (TravelGym, TurtleGym, FunctionGym, TauGym) and 4 held-out (PersuadeGym, IntentionGym, TelepathyGym, SearchGym) — to test both in-distribution performance and generalization. The notation <strong>(TurnReward / TrajScore)</strong> denotes the reward formulation: turn-level assignment strategy (Equalized, EM, R2G) paired with trajectory-level scoring (R2G or Sum).</p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>TravelGym</th>
+            <th>TurtleGym</th>
+            <th>FunctionGym</th>
+            <th>TauGym</th>
+            <th>PersuadeGym</th>
+            <th>IntentionGym</th>
+            <th>TelepathyGym</th>
+            <th>SearchGym</th>
+            <th>Avg.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="10" style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--accent); text-transform:uppercase; letter-spacing:1.5px; padding:8px 12px; background:var(--highlight);">Open-Source — Trained (Qwen3-8B)</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>Qwen3-8B <span class="ours-badge">Equalized/R2G</span></td>
+            <td class="best">0.5730</td><td class="best">0.1854</td><td class="best">0.4231</td><td class="best">0.1818</td>
+            <td class="best">0.5317</td><td class="best">1.8175</td><td class="best">0.5610</td><td class="best">0.8880</td>
+            <td class="best">0.5652</td>
+          </tr>
+          <tr>
+            <td>Qwen3-8B (EM/R2G)</td>
+            <td>0.5025</td><td>0.1917</td><td>0.4103</td><td>0.2000</td>
+            <td>0.5397</td><td>1.9025</td><td>0.5366</td><td>0.8640</td>
+            <td>0.5343</td>
+          </tr>
+          <tr>
+            <td>Qwen3-8B (R2G/R2G)</td>
+            <td>0.5724</td><td>0.1615</td><td>0.4231</td><td>0.1394</td>
+            <td>0.5238</td><td>1.8525</td><td>0.5854</td><td>0.8480</td>
+            <td>0.5539</td>
+          </tr>
+          <tr>
+            <td>Qwen3-8B (Equalized/Sum)</td>
+            <td>0.5054</td><td>0.1323</td><td>0.2692</td><td>0.2121</td>
+            <td>0.5040</td><td>1.6275</td><td>0.5366</td><td>0.8320</td>
+            <td>0.5076</td>
+          </tr>
+          <tr>
+            <td colspan="10" style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--accent); text-transform:uppercase; letter-spacing:1.5px; padding:8px 12px; background:var(--highlight);">Open-Source — Trained (Qwen3-4B)</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>Qwen3-4B <span class="ours-badge">Equalized/R2G</span></td>
+            <td class="best">0.5086</td><td class="best">0.1844</td><td class="best">0.3333</td><td class="best">0.2000</td>
+            <td class="best">0.4643</td><td class="best">1.8075</td><td class="best">0.6098</td><td class="best">0.8640</td>
+            <td class="best">0.5269</td>
+          </tr>
+          <tr>
+            <td>Qwen3-4B (EM/R2G)</td>
+            <td>0.5076</td><td>0.1417</td><td>0.3333</td><td>0.1576</td>
+            <td>0.4563</td><td>1.7375</td><td>0.6341</td><td>0.8640</td>
+            <td>0.5154</td>
+          </tr>
+          <tr>
+            <td>Qwen3-4B (R2G/R2G)</td>
+            <td>0.4629</td><td>0.1687</td><td>0.3974</td><td>0.1333</td>
+            <td>0.5794</td><td>1.5975</td><td>0.4634</td><td>0.8640</td>
+            <td>0.4895</td>
+          </tr>
+          <tr>
+            <td>Qwen3-4B (Equalized/Sum)</td>
+            <td>0.4456</td><td>0.1615</td><td>0.2308</td><td>0.1333</td>
+            <td>0.4524</td><td>1.7150</td><td>0.4878</td><td>0.8400</td>
+            <td>0.4656</td>
+          </tr>
+          <tr>
+            <td colspan="10" style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; padding:8px 12px; background:var(--subtle-bg);">Open-Source — Raw (No Training)</td>
+          </tr>
+          <tr>
+            <td>Qwen3-32B (Raw)</td>
+            <td>0.1724</td><td>0.1510</td><td>0.1538</td><td>0.0000</td>
+            <td>0.4841</td><td>1.8300</td><td>0.5610</td><td>0.7920</td>
+            <td>0.3128</td>
+          </tr>
+          <tr>
+            <td>Qwen3-14B (Raw)</td>
+            <td>0.1924</td><td>0.1417</td><td>0.1667</td><td>0.1030</td>
+            <td>0.5317</td><td>1.7000</td><td>0.5854</td><td>0.5120</td>
+            <td>0.3027</td>
+          </tr>
+          <tr>
+            <td>Qwen3-4B (Raw)</td>
+            <td>0.1405</td><td>0.0854</td><td>0.0769</td><td>0.0364</td>
+            <td>0.4048</td><td>1.7400</td><td>0.4878</td><td>0.8560</td>
+            <td>0.2929</td>
+          </tr>
+          <tr>
+            <td colspan="10" style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; padding:8px 12px; background:var(--subtle-bg);">Closed-Source Baselines</td>
+          </tr>
+          <tr>
+            <td>Gemini-2.5-Pro</td>
+            <td>0.3468</td><td>0.2740</td><td>0.4103</td><td>0.1939</td>
+            <td>0.4246</td><td>1.5900</td><td>0.9024</td><td>0.9280</td>
+            <td>0.4702</td>
+          </tr>
+          <tr>
+            <td>Gemini-2.5-Flash</td>
+            <td>0.2553</td><td>0.1958</td><td>0.3205</td><td>0.1212</td>
+            <td>0.4087</td><td>1.6850</td><td>0.6341</td><td>0.9280</td>
+            <td>0.3973</td>
+          </tr>
+          <tr>
+            <td>GPT-4o</td>
+            <td>0.3643</td><td>0.2917</td><td>0.2821</td><td>0.0303</td>
+            <td>0.3770</td><td>1.8975</td><td>0.8537</td><td>0.8800</td>
+            <td>0.4449</td>
+          </tr>
+          <tr>
+            <td>GPT-4o-mini</td>
+            <td>0.0976</td><td>0.0906</td><td>0.1538</td><td>0.2061</td>
+            <td>0.5317</td><td>0.2500</td><td>0.0488</td><td>0.3520</td>
+            <td class="loss">0.1729</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The results reveal a striking pattern: <strong>a trained Qwen3-8B with Equalized/R2G reward (avg. 0.5652) outperforms every closed-source model</strong>, including Gemini-2.5-Pro (0.4702) and GPT-4o (0.4449) — by a margin of +20% and +27% respectively. Even the smaller trained Qwen3-4B (0.5269) surpasses all closed-source baselines. Raw models without training remain far behind their trained counterparts (0.31 vs 0.56), confirming that user-centric interaction ability does not emerge naturally at scale — it must be trained.</p>
+  </div>
+</section>
+
+<!-- ==================== KEY FINDINGS ==================== -->
+<section style="background: var(--subtle-bg);">
+  <div class="container fade-in">
+    <span class="section-num">Insights</span>
+    <h2>Key Findings</h2>
+
+    <div class="finding">
+      <span class="finding-label">Finding 1</span>
+      <p><strong>SFT cold start is critical for unlocking interaction ability and enabling sustained RL improvements.</strong> Without an SFT warm-up, pure RL training stagnates — models cannot form coherent multi-turn dialogues, so GRPO receives degenerate training signal. SFT provides the necessary dialogue foundation that RL then exploits to push far beyond the SFT performance ceiling. Concretely, the best trained Qwen3-8B (avg <strong>0.5652</strong>) vastly outperforms its raw counterpart Qwen3-32B (avg <strong>0.3128</strong>) despite being a 4× smaller model — a gap attributable solely to user-centric RL training. This is a sharper dependency than in single-turn tool-use tasks, reflecting the complexity of sustained user interaction.</p>
+    </div>
+
+    <div class="finding">
+      <span class="finding-label">Finding 2</span>
+      <p><strong>Deliberate trajectory scoring (R2G) yields the most efficient and effective multi-turn interactions.</strong> R2G trajectory scoring consistently outperforms Sum across both Qwen3-8B and Qwen3-4B model sizes. The Equalized/R2G configuration achieves the best averages of <strong>0.5652</strong> (8B) and <strong>0.5269</strong> (4B), while switching to Sum scoring drops performance by up to <strong>−0.06 avg</strong>. R2G correctly focuses learning on turns that carry meaningful user-satisfaction signal, while equalized turn reward prevents any single step from dominating. Among turn-level strategies, Equalized slightly outperforms EM for both model sizes, suggesting that distributing reward equally across turns provides more stable gradient signal than exact-match-based attribution.</p>
+    </div>
+
+    <div class="finding">
+      <span class="finding-label">Finding 3</span>
+      <p><strong>Open-source user simulators (Qwen3-32B) are a cost-effective and transferable alternative to GPT-4o.</strong> While stronger simulated users (GPT-4o) do facilitate more nuanced training signal, Qwen3-32B achieves competitive training outcomes at a fraction of the cost. Crucially, agents trained with open-source simulators transfer well to GPT-4o-evaluated benchmarks — the best trained model achieves <strong>+20% avg</strong> over Gemini-2.5-Pro (0.5652 vs 0.4702) and <strong>+27% avg</strong> over GPT-4o (0.5652 vs 0.4449), suggesting that simulator strength matters less than simulator consistency. Open-source infrastructure is viable for reproducing and scaling UserRL training, removing the proprietary dependency that has blocked community adoption of similar frameworks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CITATION ==================== -->
+<section id="citation">
+  <div class="container fade-in">
+    <span class="section-num">Citation</span>
+    <p>If you find UserRL useful in your research, please consider citing our work.</p>
+    <div class="codeblock-wrapper">
+      <button class="copy-btn" onclick="copyBibtex()">Copy</button>
+      <pre class="codeblock-shell"><code id="bibtexBlock">@article{qian2025userrl,
+  title   = {UserRL: Training Interactive User-Centric Agent via Reinforcement Learning},
+  author  = {Qian, Cheng and Liu, Zuxin and Prabhakar, Akshara and Qiu, Jielin and Liu, Zhiwei and Chen, Haolin and Kokane, Shirley and Ji, Heng and Yao, Weiran and Heinecke, Shelby and Savarese, Silvio and Xiong, Caiming and Wang, Huan},
+  journal = {arXiv preprint arXiv:2509.19736},
+  year    = {2025}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div>
+    <em>"The measure of an agent is not the task it completes — but the user it satisfies."</em>
+  </div>
+  <div style="margin-top:16px;">
+    © 2025 UserRL Project · University of Illinois Urbana-Champaign &amp; Salesforce AI Research<br>
+    Built upon <a href="https://arxiv.org/abs/2507.22034">UserBench</a> · All code and data publicly released.
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  function copyBibtex() {
+    const text = document.getElementById('bibtexBlock').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
