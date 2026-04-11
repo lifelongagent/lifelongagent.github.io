@@ -1,0 +1,352 @@
+\title{\vspace{1mm}The 2nd Edition of the Workshop on Lifelong Agents:\\ Learning, Aligning, and Evolving}
+% Agent Behaviors Matters!
+
+% \author{Cheng Qian$^{1}$,
+% Emre Can Acikgoz$^{1}$,
+% Hongru Wang$^{2}$,
+% Wenyue Hua$^{3}$,
+% Spandana Gella$^{4,5}$,
+% Jonas Hübotter$^{6}$,\\
+% \textbf{Zhenfei Yin$^{7}$,
+% Siyuan Wang$^{8}$
+% % Alon Halevy$^{9}$
+% } \vspace{2mm} \\
+% $^{1}$University of Illinois Urbana-Champaign,
+% $^{2}$University of Edinburgh,
+% $^{3}$Microsoft Research,
+% $^{4}$ServiceNow AI Research,\\
+% $^{5}$McGill University,
+% $^{6}$ETH Zürich,
+% $^{7}$University of Oxford,
+% $^{8}$The Chinese University of Hong Kong \vspace{2mm} \\
+% % $^{9}$Google Inc. 
+% % \textbf{Previous Event}: \url{https://lifelongagent.github.io/colm26.html} \\
+% \textbf{Website}: \url{https://lifelongagent.github.io/colm26.html} \\
+% \textbf{Contact}: \url{lifelongagent@googlegroups.com}
+% }
+
+\author{Cheng Qian$^{1}$,
+Emre Can Acikgoz$^{1}$,
+Hongru Wang$^{2}$,
+Wenyue Hua$^{3}$,
+Spandana Gella$^{4,5}$,
+Jonas Hübotter$^{6}$,\\
+\textbf{Zhenfei Yin$^{7}$,
+Siyuan Wang$^{8}$,
+Alon Halevy$^{9}$,
+Heng Ji$^{1}$,
+Philip Torr$^{7}$,
+Dilek Hakkani-T\"ur$^{1}$,
+Gokhan Tur$^{1}$
+} \vspace{2mm} \\
+$^{1}$University of Illinois Urbana-Champaign,
+$^{2}$University of Edinburgh,
+$^{3}$Microsoft Research,
+$^{4}$ServiceNow AI Research,\\
+$^{5}$McGill University,
+$^{6}$ETH Zürich,
+$^{7}$University of Oxford,
+$^{8}$The Chinese University of Hong Kong,
+$^{9}$Google Cloud \vspace{2mm} \\
+\textbf{Website}: \url{https://lifelongagent.github.io/colm26.html} \\
+\textbf{Contact}: \url{lifelongagent@googlegroups.com}
+}
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\iclrfinalcopy % Uncomment for camera-ready version, but NOT for submission.
+
+\begin{document}
+
+\maketitle
+
+\vspace{-4mm}
+\section{Workshop Summary}
+\vspace{-2mm}
+
+\begin{wrapfigure}{r}{0.45\linewidth} % r=right, l=left; width of the figure box
+    \centering
+    \vspace{-12mm} % adjust vertical position
+    \includegraphics[width=\linewidth]{figures/intro.png}
+    \vspace{-7mm}
+    \caption{Lifelong Agents Illustration.}
+    \vspace{-4mm}
+    \label{fig:intro}
+\end{wrapfigure}
+
+Artificial intelligence is entering a new phase: from one-shot assistants to \emph{persistent agents} that remember, act, and adapt across extended interactions. Recent work increasingly studies agents as stateful systems with memory, planning, tool use, and environment interaction, rather than static models evaluated only on short-horizon benchmarks \cite{zheng2025lifelong,chen2026continual,xu2026personalized}. This shift makes the central challenge more concrete: \textbf{how can agents continuously improve while remaining reliable, efficient, and aligned over time?}
+
+The notion of a \textbf{lifelong agent} offers a natural lens for this challenge. A lifelong agent should not only acquire new knowledge and skills, but also manage memory, personalize safely, interact with evolving tool ecosystems, and withstand long-term deployment without drift or brittle failures \cite{liu2026perma,anupam2025browserarena,ma2026maestro,sheshadri2026auditbench}. This workshop brings together these emerging directions under a unified agenda centered on agents that \textbf{learn, align, and evolve} throughout their lifespan.
+
+\noindent\textbf{Topics of Interest.}
+The workshop encourages paper submissions on topics including:
+\begin{itemize}[topsep=-2pt, partopsep=0pt, leftmargin=*, itemsep=0pt]
+    \item \textbf{Persistent Memory and Personalization:} long-term memory, preference modeling, memory governance, and adaptive personalization for agents operating across sessions \cite{xu2026personalized,liu2026perma}.  
+    \item \textbf{Continual Adaptation of Agentic LLMs:} continual post-training, online adaptation, domain shift handling, and mechanisms for balancing plasticity and retention in deployed agents \cite{zheng2025lifelong,chen2026continual}.  
+    \item \textbf{Computer-Use and Web Agents:} agents that browse, operate interfaces, and learn from interaction in realistic digital environments, including structured exploration and long-horizon execution \cite{anupam2025browserarena,gandhi2025gobrowse}.  
+    \item \textbf{Protocols, Tools, and Interoperability:} protocol-based tool use, modular skill composition, delegation, and the security challenges arising from interoperable agent ecosystems \cite{yang2026mcp,prakash2026aip}.  
+    \item \textbf{Dynamic Alignment and Auditing:} evolving preferences, alignment drift, continual oversight, red-teaming, and agentic auditing methods for persistent systems \cite{sheshadri2026auditbench}.  
+    \item \textbf{Reliability, Observability, and Evaluation:} interactive benchmarks, execution traces, reproducibility, observability, and metrics for long-horizon reliability, recovery, and robustness \cite{ma2026maestro,anupam2025browserarena}.  
+    \item \textbf{Multi-Agent Lifelong Systems:} coordination, delegation, specialization, and collective adaptation in persistent multi-agent environments \cite{ma2026maestro,prakash2026aip}.  
+    \item \textbf{Efficient and Sustainable Lifelong Agents:} resource-aware adaptation, efficient memory and retrieval, latency-cost tradeoffs, and sustainable deployment under real-world constraints \cite{chen2026continual,ma2026maestro}.  
+\end{itemize}
+
+In addition to invited talks, the workshop will feature panel discussions and a poster session to foster cross-disciplinary exchange and highlight emerging directions. By bringing together diverse communities around the theme of lifelong agents, we aim to showcase recent advances and help shape a roadmap toward AI systems that learn, align, and evolve over time.
+
+% =========================
+
+\vspace{-1.5mm}
+\section{Workshop Logistics}
+\vspace{-2mm}
+
+\noindent\textbf{Workshop Schedule.}
+We propose a \textbf{full-day hybrid workshop} combining invited talks, contributed presentations, posters, and panel discussions to balance \textit{intellectual depth} with \textit{structured interaction}. The program will feature six invited talks, three oral presentations, two 1-hour poster sessions integrated with coffee breaks, and two panel discussions, ensuring substantial opportunities for both formal exchange and informal discussion across in-person and virtual participants. In total, \textit{3 hours} of the program will be dedicated to \textbf{structured interactions}, underscoring our emphasis on meaningful community engagement in addition to technical presentation. An awards session will conclude the workshop, recognizing outstanding contributions and highlighting emerging directions in lifelong agent research. See \Cref{workshop_program} for a tentative schedule.
+
+\noindent\textbf{Interaction and Access.}  
+To support broad participation, the workshop will be held in a \textbf{hybrid format}. Invited talks, panels, and oral presentations will be livestreamed with interactive Q\&A, while poster sessions will be supported both in person and through online platforms to enable participation across time zones. A dedicated chat space will encourage ongoing discussion throughout the day, and slides and recordings (with permission) will be shared on the workshop website after the event.
+
+\begin{wraptable}{r}{0.3\columnwidth}
+\vspace{-3mm}
+\renewcommand{\arraystretch}{1.5}
+\scriptsize
+\centering
+\resizebox{0.3\columnwidth}{!}{
+\rowcolors{2}{gray!10}{white}
+\begin{tabular*}{\linewidth}{p{0.62\linewidth}p{0.245\linewidth}}
+\toprule
+\textbf{Activity Type} & \textbf{Time}\\
+\midrule
+Opening Remarks & 8:45-9:00  \\
+
+Invited Talk 1: Graham Neubig & 9:00-9:30 \\
+Invited Talk 2: Azalia Mirhoseini & 9:30-10:00 \\
+Coffee Break \& Poster Session I & 10:00-11:00 \\
+Oral Presentations (10 min each) & 11:00-11:30 \\
+Invited Talk 3: Siva Reddy & 11:30-12:00 \\
+Invited Talk 4: Natasha Jaques & 12:00-12:30 \\
+
+Lunch & 12:30-13:30 \\
+
+Invited Talk 5: Sergey Levine & 13:30-14:00 \\
+Invited Talk 6: Asli Celikyilmaz & 14:30-15:00 \\
+Coffee Break \& Poster Session II & 15:00-16:00 \\
+Invited Talk 7: Yu Su & 16:00-16:30 \\
+Panel Discussion II & 16:30-17:00 \\
+
+Awards and Closing Remarks & 17:00-17:15 \\
+\bottomrule
+\end{tabular*}
+}
+\label{workshop_program}
+\vspace{-1mm}
+\caption{Tentative Schedule.}
+\vspace{-10mm}
+\end{wraptable}
+
+\noindent\textbf{Paper Submission and Review Process.}  
+We will accept both \textbf{full papers} (up to 9 pages, following COLM 2026 guidelines) and \textbf{short papers} (up to 5 pages). The short paper track is intended to encourage broader participation, including early-career researchers, underrepresented groups, and authors presenting late-breaking ideas. Suitable submissions include novel implementations, concise theoretical results, re-analyses of prior work, and new perspectives on existing research. AI-generated submissions will not be accepted, while AI-assisted writing is permitted if clearly disclosed in accordance with the COLM 2026 policy on proper use of AI.
+
+To align with COLM’s suggested schedule, we propose the following timeline:
+\begin{itemize}[topsep=-2pt, partopsep=0pt, leftmargin=*, itemsep=-2pt]
+    \item Workshop paper submission deadline: \textbf{June 7, 2026}
+    \item Notification of acceptance: \textbf{June 23, 2026}
+    \item Camera-ready deadline and final workshop program: \textbf{July 15, 2026}
+\end{itemize}
+This schedule leaves adequate time for review, final revisions, and program preparation. All accepted papers will be featured in the workshop through oral or poster presentations, with outstanding submissions recognized in the closing awards session.
+
+\noindent\textbf{Awards.}  
+We will present up to \textbf{three Best and Outstanding Paper Awards}, with winning papers featured in the oral sessions to recognize outstanding contributions and encourage high-quality submissions.
+
+\noindent\textbf{Funding Support.}  
+We have secured \textbf{\$3,000} in sponsorship from Tencent and are pursuing additional support from Amazon and Salesforce for student travel awards. We are also exploring compute and API credit vouchers from platforms such as Cohere and OpenAI to support outstanding contributions. These efforts reflect our commitment to supporting emerging researchers and fostering broad participation.
+
+\noindent\textbf{Expected Audience and Outreach.}
+We anticipate \textbf{200--300} sustained in-person participants, with peak attendance of \textbf{300--400}, and a \textbf{total reach of 500--600} including virtual attendees. We will promote the workshop through a dedicated website, social media, academic channels such as WikiCFP and OpenReview, and the organizers’ and speakers’ networks.
+
+\noindent\textbf{Inclusion and Broader Engagement.}  
+A central part of our outreach is active engagement with \textbf{affinity groups and local institutions}, including WiML, LatinX in AI, Black in AI, Queer in AI, and MusIML, as well as nearby universities and research institutes. We also plan to provide attendance support for K--12 students from underrepresented communities in San Francisco and undergraduate students from local institutions, helping reduce barriers to participation, broaden exposure to AI research, and strengthen the workshop’s connections with diverse local communities.
+
+\vspace{-1.5mm}
+\section{Significance and Related Workshops}
+\vspace{-2mm}
+
+\noindent\textbf{Why This Second Edition Is Timely.}
+The first edition of \href{https://lifelongagent.github.io/}{Lifelong Agent workshop for ICLR 2026} has already demonstrated strong community interest, with \textbf{250+ submissions} from a broad range of institutions and researchers across academia and industry. This response confirms that lifelong agency is not a niche topic, but an emerging focal point for multiple communities working on agents, learning, alignment, and deployment. Building on this momentum, we are motivated to organize a second edition that goes beyond establishing the topic’s importance and instead addresses its next-stage questions. As agents move from laboratory prototypes to persistent deployment, the central challenge is no longer only how to make them more capable, but how to ensure that adaptation remains \textbf{controlled, auditable, and beneficial} over long horizons. This second edition is therefore a natural and timely continuation: it advances the conversation from recognizing lifelong agents as an important direction to understanding how they can be built responsibly and studied rigorously.
+
+\noindent\textbf{How The Second Edition Differs from Related Workshops.}
+Several related workshops have advanced adjacent parts of the agenda, including the \href{https://llmagents.github.io/}{ICLR 2024 Workshop on Large Language Models for Agents}, the \href{https://workshop-llm-reasoning-planning.github.io/}{ICLR 2025 Workshop on Reasoning and Planning for LLMs}, the \href{https://sites.google.com/view/continual-fomo-workshop}{NeurIPS 2024 Workshop on Scalable Continual Learning for Lifelong Foundation Models}, the \href{https://sites.google.com/view/worldmodel-iclr2025/}{ICLR 2025 World Models} workshop, the \href{https://embodied-ai.org/}{Embodied AI Workshop at CVPR}, the \href{https://robot-learning.ml/2021/}{NeurIPS 2021 Robot Learning Workshop}, the \href{https://foundation-models-meet-embodied-agents.github.io/cvpr2025/}{CVPR 2025 Foundation Models Meet Embodied Agents}, and the ICML workshop on \href{https://icml-tifa.github.io/}{Trustworthy Multimodal Foundation Models and AI Agents}. Our workshop differs by treating these directions not as separate themes, but as parts of a single \textbf{lifecycle perspective} on agents. The key gap today is not another isolated discussion of planning, memory, embodiment, or autonomy, but a forum for understanding how these components interact across time: how learning changes alignment, how new tools alter reliability, how personalization affects oversight, and how persistent deployment demands new forms of evaluation and governance. This is the distinctive role of the second edition: to connect these developments into a coherent agenda for agents that must \textbf{learn, align, and evolve} under real-world conditions.
+
+% =========================
+\appendix
+\clearpage
+
+\section*{Appendix}
+
+\section{Invited Speakers and Panelists}
+All of the following invitees have agreed to participate as speakers or panelists in our workshop, with either confirmed or tentatively confirmed commitments.
+
+\subsection*{Sergey Levine (University of California, Berkeley)}
+\begin{wrapfigure}[6]{l}{1.6cm}
+  \vspace{-12pt}
+  \begin{tikzpicture}[inner sep=0,outer sep=0]
+    \clip (0,0) rectangle (1.6cm,2cm);
+    \node[anchor=south west,inner sep=0,outer sep=0] at (-0.15,0)
+      {\includegraphics[height=2cm]{figures/speakers/sergey_levine.jpg}};
+  \end{tikzpicture}
+  \vspace{-6pt}
+\end{wrapfigure}
+Sergey Levine is an Associate Professor in EECS at UC Berkeley. His research centers on algorithms that enable autonomous agents to acquire complex behaviors through learning, with emphasis on deep reinforcement learning for decision making and control in robotics and other domains. He received his B.S., M.S., and Ph.D. in Computer Science from Stanford University, and joined Berkeley’s faculty in 2016. He leads the Robotic Artificial Intelligence and Learning (RAIL) Lab at Berkeley, where his group advances offline RL, imitation learning, and real-world robotic learning.
+
+\subsection*{Azalia Mirhoseini (Stanford University; Google DeepMind)}
+\begin{wrapfigure}[6]{l}{1.6cm}
+  \vspace{-12pt}
+  \begin{tikzpicture}[inner sep=0,outer sep=0]
+    \clip (0,0) rectangle (1.6cm,2cm);
+    \node[anchor=south west,inner sep=0,outer sep=0] at (-0.4,0)
+      {\includegraphics[height=2cm]{figures/speakers/azalia_mirhoseini.jpg}};
+  \end{tikzpicture}
+  \vspace{-6pt}
+\end{wrapfigure}
+Azalia Mirhoseini is an Assistant Professor of Computer Science at Stanford University, where she leads the Scaling Intelligence Lab, and a Senior Staff Research Scientist at Google DeepMind. Her research focuses on learning-based methods for systems and chip design (e.g. RL for chip floorplanning) and self-improving scalable AI. Before academia, she held roles at Anthropic and Google Brain, where she co-founded their “ML for Systems” effort. She earned her Ph.D. in Electrical \& Computer Engineering from Rice University (Best PhD Thesis Award) and her B.Sc. in Electrical Engineering from Sharif University of Technology. Her honors include MIT Technology Review’s 35 Under 35 and wide recognition for her work in flagship venues like Nature.
+
+\subsection*{Siva Reddy (McGill University; Mila; Canada CIFAR AI Chair)}
+\begin{wrapfigure}[6]{l}{1.6cm}
+  \vspace{-12pt}
+  \begin{tikzpicture}[inner sep=0,outer sep=0]
+    \clip (0,0) rectangle (1.6cm,2cm);
+    \node[anchor=south west,inner sep=0,outer sep=0] at (0,0)
+      {\includegraphics[height=2.15cm]{figures/speakers/siva_reddy.jpg}};
+  \end{tikzpicture}
+  \vspace{-6pt}
+\end{wrapfigure}
+Siva Reddy is an Assistant Professor jointly in Computer Science and Linguistics at McGill University, a Canada CIFAR AI Chair, and a core academic member at Mila. He co-leads the McGill NLP group, with research focusing on language understanding for QA and conversational systems that integrate symbolic/linguistic structure with deep learning; prior roles include a postdoctoral position at Stanford and recognition as a Google PhD Fellow during his doctoral studies at the University of Edinburgh. He also served as a research scientist at ServiceNow Research, complementing his academic leadership.
+
+\subsection*{Natasha Jaques (University of Washington; Google DeepMind)}
+\begin{wrapfigure}[6]{l}{1.6cm}
+  \vspace{-12pt}
+  \begin{tikzpicture}[inner sep=0,outer sep=0]
+    \clip (0,0) rectangle (1.6cm,2cm);
+    \node[anchor=south west,inner sep=0,outer sep=0] at (-0.1,0)
+      {\includegraphics[height=2cm]{figures/speakers/natasha_jaques.jpg}};
+  \end{tikzpicture}
+  \vspace{-6pt}
+\end{wrapfigure}
+Natasha Jaques is an Assistant Professor in the Paul G. Allen School of Computer Science \& Engineering at the University of Washington, where she leads the Social RL Lab, and a Senior Research Scientist at Google DeepMind. Her research focuses on social reinforcement learning, multi-agent learning, coordination, and human-AI interaction. Prior to joining UW, she was a Visiting Postdoctoral Scholar at UC Berkeley and a Senior Research Scientist at Google Brain; her work has earned distinctions including the Outstanding PhD Dissertation Award  and best paper recognition at major AI venues.
+
+\subsection*{Graham Neubig (Carnegie Mellon University)}
+\begin{wrapfigure}[6]{l}{1.6cm}
+  \vspace{-12pt}
+  \begin{tikzpicture}[inner sep=0,outer sep=0]
+    \clip (0,0) rectangle (1.6cm,2cm);
+    \node[anchor=south west,inner sep=0,outer sep=0] at (0,0)
+      {\includegraphics[height=2cm]{figures/speakers/graham_neubig.jpg}};
+  \end{tikzpicture}
+  \vspace{-6pt}
+\end{wrapfigure}
+Graham Neubig is an associate professor at the Language Technologies Institute of Carnegie Mellon University and Chief Scientist at OpenHands. His research focuses on large language models, including both fundamental advances in model capabilities and applications to tasks such as software development. His final goal is that every person in the world should be able to communicate with each-other, and with computers in their own language. He also contributes to making NLP research more accessible through open publishing of research papers, advanced NLP course materials and video lectures, and open-source software.
+
+\subsection*{Asli Celikyilmaz (Meta FAIR)}
+\begin{wrapfigure}[6]{l}{1.6cm}
+  \vspace{-12pt}
+  \begin{tikzpicture}[inner sep=0,outer sep=0]
+    \clip (0,0) rectangle (1.6cm,2cm);
+    \node[anchor=south west,inner sep=0,outer sep=0] at (-0.15,0)
+      {\includegraphics[height=2cm]{figures/speakers/asli_celikyilmaz.jpeg}};
+  \end{tikzpicture}
+  \vspace{-6pt}
+\end{wrapfigure}
+Asli Celikyilmaz is a Senior Research Manager at Meta FAIR and previously a Senior Principal Researcher at Microsoft Research. Her work has significantly influenced natural language generation and evaluation, as well as memory-augmented and reasoning-augmented agents that ground language in social and physical contexts; she also serves the community through many editorial and leadership roles. She completed earlier research appointments at UC Berkeley and Microsoft, and maintains active publication and service portfolios across major NLP/AI venues.
+
+\subsection*{Yu Su (Ohio State University)}
+\begin{wrapfigure}[6]{l}{1.6cm}
+  \vspace{-12pt}
+  \begin{tikzpicture}[inner sep=0,outer sep=0]
+    \clip (0,0) rectangle (1.6cm,2cm);
+    \node[anchor=south west,inner sep=0,outer sep=0] at (-0.25,0)
+      {\includegraphics[height=2cm]{figures/speakers/yu_su.jpg}};
+  \end{tikzpicture}
+  \vspace{-6pt}
+\end{wrapfigure}
+Yu Su is an Associate Professor of Computer Science and Engineering at The Ohio State University, where he co-directs the OSU NLP group and helps lead AI institute efforts (Foundational AI team at ICICLE and ML Foundations at Imageomics). Previously, he was a Senior Researcher at Microsoft Semantic Machines. He received his Ph.D. in Computer Science from the University of California, Santa Barbara, and his B.S. from Tsinghua University; his recognitions include the UCSB Outstanding Dissertation Award and a Schmidt Sciences AI2050/Innovation-style distinction. His research spans language agents, knowledge grounding, and the interface between language and structured knowledge.
+
+
+\paragraph{Why these speakers.}
+These speakers collectively cover the main ingredients needed for \textbf{lifelong agents}: learning from interaction, reasoning with language and knowledge, scaling systems, and maintaining memory and coordination over time. \textbf{Sergey Levine}, \textbf{Azalia Mirhoseini}, and \textbf{Natasha Jaques} bring complementary expertise in reinforcement learning, self-improving systems, and multi-agent or human-AI interaction. \textbf{Siva Reddy}, \textbf{Graham Neubig}, and \textbf{Yu Su} contribute perspectives on language understanding, large language models, and knowledge-grounded reasoning. \textbf{Asli Celikyilmaz} adds expertise in generation, evaluation, and memory- and reasoning-augmented agents. Together, they span the key algorithmic, linguistic, and systems perspectives needed to discuss how AI agents can learn, adapt, and improve over time.
+
+
+% =========================
+\section{Organizers and Biographies}
+\subsection{Organizers}
+
+\paragraph{Cheng Qian ([\href{mailto:chengq9@illinois.edu}{Email}] [\href{https://qiancheng0.github.io/}{Website}])}
+is a Ph.D. student at the University of Illinois Urbana-Champaign, where his research focuses on large language model agents with an emphasis on tool use, reasoning, and creativity. His representative work includes CREATOR and ToolRL. He has also been honored with the Capital One ASKS Center Fellowship and served as Area Chair in the ARR ACL 2025 and EMNLP 2025 cycles. He obtained his bachelor degree from Tsinghua University. He is also the main organizer of \href{https://lifelongagent.github.io/}{Lifelong Agent workshop at ICLR 2026}.
+
+\paragraph{Emre Can Acikgoz ([\href{mailto:acikgoz2@illinois.edu}{Email}] [\href{https://emrecanacikgoz.github.io/}{Website}])}
+is a PhD candidate in Computer Science at UIUC advised by Dilek Hakkani-Tur and Gokhan Tur. His research focuses self-evolving LLM agents. Some of his representative works include TT-SI and Tool-R0. He served as the DSTC12 Workshop Session Chair at SIGDial 2025, is a Program Committee member for SIGDial 2026 and EACL SIGTURK 2026, and and the organizer of \href{https://lifelongagent.github.io/}{Lifelong Agent workshop at ICLR 2026}.
+
+\paragraph{Hongru Wang ([\href{mailto:hrwise98@gmail.com}{Email}] [\href{https://hrwise-nlp.github.io/}{Website}])}
+is an incoming postdoc at University of Edinburgh. He received his PhD degree from The Chinese University of Hong Kong. His work on dialogue system and language agents won 2 best paper awards at 2023 International Doctoral Forum and SIGHAN@ACL 2024. Some of his representative works include Self-DC, OTC-PO and Theory of Agent. He organized the first Tool Learning tutorial (\href{https://hrwise-nlp.github.io/assets/websites/tools-meet-llm/}{ToolsMeetLLM}) at SIGIR 2024 and co-founded the NLP Academic Exchange Platform (NICE), a forum for sharing and discussing cutting-edge research across career stages.
+
+\paragraph{Wenyue Hua ([\href{mailto:wenyuehua@microsoft.com}{Email}] [\href{https://wenyueh.github.io/en/}{Website}])}
+is a Senior Researcher at Microsoft Research, AI Frontiers. Previously, she was a postdoctoral researcher at the University of California, Santa Barbara, and she received her Ph.D. in Computer Science from Rutgers University. Her research focuses on LLM agents, multi-agent systems, reasoning, and trustworthy and efficient AI; some of her representative works include AgentOpt and Quantifying Trust. She was selected as a KAUST AI Rising Star in 2025 and has also co-organized the \href{https://iclr.cc/virtual/2026/workshop/10000792}{ICLR 2026 Workshop on Memory for LLM-Based Agentic Systems}.
+
+\paragraph{Spandana Gella ([\href{mailto:spandana.gella@servicenow.com}{Email}] [\href{https://www.servicenow.com/research/author/spandana-gella.html}{Website}])}
+is a Research Scientist and Research Manager of the Multimodal Foundational Models Program at ServiceNow AI Research. She received her Ph.D. in Computer Science from the University of Edinburgh, and her research focuses on robust and safe multimodal foundation models and autonomous LLM-agents. Earlier in her career, her work received the Best Performing System award at FIRE-2013. She has extensive workshop and tutorial experience, including co-organizing \href{https://sites.google.com/view/repl4nlp2022/home}{RepL4NLP}, \href{https://sites.google.com/view/sivl2019/home}{Shortcomings in Vision and Language}, and the Workshop on Multilingual Multimodal Learning, and she is also an organizer of the \href{https://mllm4haii.github.io/}{EACL 2026 tutorial on MLLM for Human-AI Interaction}.
+
+\paragraph{Jonas H{\"u}botter ([\href{mailto:jhuebotter@ethz.ch}{Email}] [\href{https://jonhue.github.io/}{Website}])}
+is a Ph.D. student in the Learning and Adaptive Systems Group at ETH Z{\"u}rich, where he works with Andreas Krause. His research focuses on leveraging foundation models to solve hard tasks through specialization and reinforcement learning; some of his representative works include Efficiently Learning at Test-Time and Specialization after Generalization. He is a recipient of the ETH Medal. He also has substantial \href{https://jonhue.github.io/teaching/}{tutorial-teaching experience} at ETH Z{\"u}rich documented on the Probabilistic Artificial Intelligence, Introduction to Machine Learning, and Advanced Graph Algorithms and Optimization.
+
+\paragraph{Zhenfei Yin ([\href{mailto:jeremyyin@robots.ox.ac.uk}{Email}] [\href{https://yinzhenfei.github.io/}{Website}])}
+is a postdoctoral researcher at the University of Oxford. His primary research interests include multimodal learning, AI agents, multi-agent systems, and embodied agents. He has organized \href{https://icml-tifa.github.io/}{Trustworthy Multimodal Foundation Models and AI Agents (TiFA)} workshop at ICML 2024; \href{https://icml-mfm-eai.github.io/}{Multi-modal Foundation Model meets Embodied AI} workshop at ICML 2024; \href{https://mas-2025.github.io/MAS-2025/}{Multi-Agent Systems in the Era of Foundation Models} workshop at ICML 2025; \href{https://agent-intelligence.github.io/agent-intelligence/}{Multi-Modal Reasoning for Agentic Intelligence} workshop at ICCV 2025.
+
+\paragraph{Siyuan Wang ([\href{mailto:siyuanwang1997@gmail.com}{Email}] [\href{https://siyuanwangw.github.io/}{Website}])}
+is a Postdoctoral Fellow in the Department of Computer Science and Engineering at The Chinese University of Hong Kong. She received her Ph.D. and bachelor’s degree from Fudan University. Her research centers on trustworthy and efficient reasoning of large models, and some of her representative works include Symbolic Working Memory and Stepwise Informativeness Search. Her receives Outstanding Graduates of Shanghai, the MobTech Scholarship, and multiple Outstanding Student Scholarships. She has held tutorial on \href{https://github.com/golsun/rule_learning/blob/main/AAAI%20Rule%20Learning%20Tutorial.pdf}{Rule Learning} at AAAI 2026, and served Program Committee Chair of CSSNLP 2021 and organizing committee of CSSNLP 2020.
+
+
+\subsection{Senior Advisory Board}
+We have also established an Advisory Board to include several senior professors who have been instrumental in shaping the theme and scope of the event. Their experience and insight have provided valuable guidance on the workshop’s vision, structure, and academic direction.
+
+\paragraph{Alon Halevy ([\href{mailto:alonhalevy@gmail.com}{Email}] [\href{https://alonhalevy.blogspot.com/}{Website}])}
+is a Distinguished Engineer at Google Cloud, where he works on extending data management tools with GenAI capabilities. Previously, he led the Structured Data Group at Google Research, served as CEO of Megagon Labs, and was a professor at the University of Washington. His work includes WebTables, Google Fusion Tables, and the book \emph{Principles of Data Integration}. His honors include the 2021 SIGMOD Edgar F. Codd Innovations Award, ACM Fellowship, the PECASE award, the Sloan Fellowship, and VLDB 10-year Best Paper awards; he also has longstanding tutorial experience, including co-authoring \href{https://www.vldb.org/pvldb/vol1/1454217.pdf}{A First Tutorial on Dataspaces}.
+
+\paragraph{Heng Ji ([\href{mailto:hengji@illinois.edu}{Email}] [\href{https://blender.cs.illinois.edu/hengji.html}{Website}])}
+is a Professor at University of Illinois Urbana-Champaign and an Amazon Scholar. Her research interests focus on NLP, Data Mining and AI for Science. The awards she received include “AI’s 10 to Watch” Award, NSF CAREER award, Google Research Award, IBM Watson Faculty Award, Bosch Research Award, and Amazon AWS Award, ACL2020 Best Demo Paper Award, and NAACL2021 Best Demo Paper Award. She has coordinated the NIST TAC Knowledge Base Population task since 2010. She is elected as the North American Chapter of the Association for Computational Linguistics (NAACL) secretary 2020-2021.
+
+\paragraph{Philip Torr ([\href{mailto:philip.torr@eng.ox.ac.uk}{Email}] [\href{https://eng.ox.ac.uk/people/philip-torr/}{Website}])}
+is a Professor at the University of Oxford and holds the Five AI / Royal Academy of Engineering Research Chair in Computer Vision and Machine Learning. His research focuses on AI, machine learning, and computer vision, with seminal contributions to object recognition, segmentation, 3D reconstruction, and tracking. His accolades include the Marr Prize (1998), Royal Society Wolfson Merit Award, and fellowships with both the Royal Academy of Engineering and the Royal Society. He is also a Turing AI World-Leading Researcher Fellow, recognized for academic excellence and real-world impact.
+
+% \paragraph{Mengdi Wang ([\href{mailto:mengdiw@princeton.edu}{Email}] [\href{https://ece.princeton.edu/people/mengdi-wang}{Website}])}
+% is a Professor at Princeton University. Her research focused on stochastic optimization, reinforcement learning, and AI for science, and has earned major honors including the NSF CAREER Award, Google Faculty Award, MIT Tech Review Innovators Under 35 (China), WAIC YunFan Award, and the AACC Donald Eckman Award. She has co-organized the \href{https://simons.berkeley.edu/workshops/multi-agent-reinforcement-learning-bandit-learning}{Workshop on Multi-Agent Reinforcement Learning and Bandit Learning} at the Simons Institute (2022), and served as Program Chair for ICLR 2023 and Senior AC for NeurIPS, ICML, and COLT.
+
+\paragraph{Dilek Hakkani-Tür ([\href{mailto:dilek@illinois.edu}{Email}] [\href{https://siebelschool.illinois.edu/about/people/all-faculty/dilek}{Website}])}
+is a Professor at the University of Illinois Urbana-Champaign, and formerly a leading researcher at Amazon Alexa AI, Google Research, Microsoft Research, ICSI, and AT\&T Labs (2001–2023) on dialogue systems and natural language understanding. She has earned IEEE, ISCA, and ACL Fellowships (in 2024) and served in major editorial and leadership roles, including Editor-in-Chief of IEEE/ACM Transactions on Audio, Speech and Language Processing (2019–2021), co-Editor-in-Chief of Transactions of the Association for Computational Linguistics (since 2024), and President of ACL’s SIGDIAL (2023–2025).
+
+\paragraph{Gokhan Tur ([\href{mailto:gokhan@illinois.edu}{Email}] [\href{https://siebelschool.illinois.edu/about/people/department-faculty/gokhan}{Website}])}
+is a Research Professor at the University of Illinois Urbana-Champaign and an Amazon Scholar. He was a founding member of the Microsoft Cortana team, and later worked on conversational AI at Apple Siri, Google Research, Uber AI, and Amazon Alexa AI. His research has been recognized with the IEEE SPS Best Paper Award (2020) and multiple international best paper awards. Prof. Tur is a Fellow of IEEE and has served as senior area chair for EMNLP 2024 and NAACL 2024, as well as associate editor for IEEE Transactions on Audio, Speech, and Language Processing. He received his Ph.D. in Computer Science from Bilkent University, Turkey in 2000.
+
+
+% =========================
+
+\section{Diversity Commitment}
+
+\paragraph{Diversity of perspectives.}
+As a \textbf{second-edition} workshop, we aim to build on the strong interest from the first year while broadening the conversation further across the communities that shape lifelong agents. The workshop is intentionally positioned at the intersection of language agents, reinforcement learning, multimodal and embodied systems, human-AI interaction, evaluation, and AI safety. By bringing these perspectives into one venue, we hope to encourage exchange across communities that often publish separately, but face closely related questions once agents must operate, adapt, and be assessed over extended time horizons.
+
+\paragraph{Diversity of participants and access.}
+We are committed to making the workshop accessible to participants from different regions, institutions, and career stages. The \textbf{hybrid format}, together with online sharing of materials when permitted, is intended to lower barriers for those who cannot attend fully in person. We will also maintain both full-paper and short-paper tracks so that students, early-career researchers, and authors with emerging ideas can participate meaningfully. In our outreach, we will engage both standard academic channels and broader community networks to attract a wide range of contributors from academia and industry.
+
+\paragraph{Diversity in outreach and community building.}
+Beyond the core research audience, we want the workshop to serve as an inclusive point of entry into the lifelong agents community. Our outreach will include engagement with affinity groups and local institutions, with the goal of broadening participation from groups that remain underrepresented in AI. We also plan to support involvement from local undergraduate and pre-college students where feasible, helping connect the workshop to the surrounding educational community. More broadly, we aim to foster a professional and welcoming environment in which researchers with different backgrounds, experiences, and technical viewpoints can participate fully and exchange ideas constructively.
+
+% ========================
+
+% \section{LLM Usage Policy}
+% In line with ICLR 2026 guidelines, our workshop permits the use of large language models (LLMs) only as supportive tools (e.g., for language polishing, formatting, or coding assistance) but not as primary authors or reviewers. All submitted work must be fundamentally human-authored, with AI-generated papers strictly prohibited, particularly in the short and tiny paper tracks. Organizers may use LLMs for clerical support (e.g., drafting communication or summaries), but all substantive reviewing and decision-making will be performed by human experts with full oversight. This ensures integrity, originality, and fairness in both submissions and the workshop process.
+
+% =========================
+
+\bibliographystyle{plainnat}
+\bibliography{iclr2026_conference}
+
+\end{document}
