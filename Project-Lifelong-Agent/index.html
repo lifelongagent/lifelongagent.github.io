@@ -134,6 +134,22 @@
             flex-shrink: 0;
         }
 
+        .venue {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: #6b5c4a;
+            margin-top: 8px;
+            padding: 3px 10px;
+            background: #f1ebe2;
+            border-radius: 100px;
+            letter-spacing: 0.02em;
+        }
+        .venue.review { background: #f6ecc8; color: #8a6f1e; }
+        .venue.acl { background: #f4dcd9; color: #a83a2c; }
+        .venue.neurips { background: #e8e0ee; color: #6b4a8a; }
+        .venue.arxiv { background: #efece8; color: #8a7e6d; }
+
         @media (max-width: 640px) {
             .hero { margin-top: 80px; }
             h1 { font-size: 2rem; }
@@ -161,7 +177,8 @@
         <div class="title">
             <div>
                 Tool-R0: Self-Evolving LLM Agents for Tool-Learning from Zero Data<br>
-                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2509.19736" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://emrecanacikgoz.github.io/Tool-R0" target="_blank">Website</a></span>
+                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2602.21320" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://emrecanacikgoz.github.io/Tool-R0" target="_blank">Website</a> &nbsp;&nbsp; 𝕏 <a href="https://x.com/emrecanacikgoz/status/2028906997152924096?s=20" target="_blank">Post</a></span><br>
+                <span class="venue review">Under Review @ COLM</span>
             </div>
         </div>
         <span class="bottom">
@@ -174,7 +191,8 @@
         <div class="title">
             <div>
                 Current Agents Fail to Leverage World Model as Tool for Foresight<br>
-                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2601.03905" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/World-Agent/index.html" target="_blank">Website</a></span>
+                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2601.03905" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/World-Agent/index.html" target="_blank">Website</a></span><br>
+                <span class="venue acl">ACL 2026</span>
             </div>
         </div>
         <span class="bottom">
@@ -186,8 +204,9 @@
     <div class="card">
         <div class="title">
             <div>
-                Self-Improving LLM Agents at Test-Time<br>
-                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2510.07841" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://arxiv.org/pdf/2510.07841" target="_blank">Website</a></span>
+                TT-SI: Self-Improving LLM Agents with Test-Time Training<br>
+                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2510.07841" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://arxiv.org/pdf/2510.07841" target="_blank">Website</a> &nbsp;&nbsp; 𝕏 <a href="https://x.com/emrecanacikgoz/status/1976686817177911653?s=20" target="_blank">Post</a></span><br>
+                <span class="venue acl">ACL 2026</span>
             </div>
         </div>
         <span class="bottom">
@@ -200,7 +219,8 @@
         <div class="title">
             <div>
                 ToolRL: Reward is All Tool Learning Needs<br>
-                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2504.13958" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/ToolRL/index.html" target="_blank">Website</a></span>
+                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2504.13958" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/ToolRL/index.html" target="_blank">Website</a></span><br>
+                <span class="venue neurips">NeurIPS 2025</span>
             </div>
         </div>
         <span class="bottom">
@@ -213,7 +233,8 @@
         <div class="title">
             <div>
                 SMART: Self-Aware Agent for Tool Overuse Mitigation<br>
-                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2502.11435" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/SMART/index.html" target="_blank">Website</a></span>
+                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2502.11435" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/SMART/index.html" target="_blank">Website</a></span><br>
+                <span class="venue acl">ACL 2025</span>
             </div>
         </div>
         <span class="bottom">
@@ -225,8 +246,23 @@
     <div class="card">
         <div class="title">
             <div>
+                Can a Single Model Master Both Multi-turn Conversations and Tool Use? CoALM: A Unified Conversational Agentic Language Model<br>
+                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/pdf/2502.08820" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://emrecanacikgoz.github.io/CoALM/" target="_blank">Website</a> &nbsp;&nbsp; 𝕏 <a href="https://x.com/emrecanacikgoz/status/1890454510184853718?s=20" target="_blank">Post</a></span><br>
+                <span class="venue acl">ACL 2025</span>
+            </div>
+        </div>
+        <span class="bottom">
+            <span class="labels"><span class="label learning">Learning</span></span>
+            <span class="date">Feb 2025</span>
+        </span>
+    </div>
+
+    <div class="card">
+        <div class="title">
+            <div>
                 UserRL: Training Interactive User-Centric Agent via Reinforcement Learning<br>
-                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/abs/2509.19736" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/UserRL/index.html" target="_blank">Website</a></span>
+                <span style="font-size: 0.85rem; margin-top: 6px; display: inline-block;">📄 <a href="https://arxiv.org/abs/2509.19736" target="_blank">PDF</a> &nbsp;&nbsp; 🌐 <a href="https://lifelongagent.github.io/Project-Lifelong-Agent/UserRL/index.html" target="_blank">Website</a></span><br>
+                <span class="venue arxiv">arXiv 2025</span>
             </div>
         </div>
         <span class="bottom">
