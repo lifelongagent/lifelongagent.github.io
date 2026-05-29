@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>EMNLP 2026 Tutorial - Lifelong Language Agents: Theory and Practice</title>
+  <meta content="EMNLP 2026 cutting-edge tutorial on Lifelong Language Agents: agents that learn, align, and evolve across sustained interaction." name="description">
+  <meta content="lifelong agents, language agents, EMNLP 2026, tutorial, tool learning, alignment, Theory of Agent, continual learning" name="keywords">
+
+  <link href="../assets/img/others/robot.png" rel="icon">
+  <link href="../assets/img/others/robot.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="../assets/css/style_colm26.css" rel="stylesheet">
+
+  <style>
+    /* Budapest hero background for the EMNLP 2026 tutorial */
+    #hero {
+      background: url(../assets/img/background_budapest.jpg) top center;
+      background-size: cover;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
+    }
+    .schedule-table th,
+    .schedule-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    .schedule-table th {
+      background-color: #f7f7f7;
+      font-weight: bold;
+    }
+    .schedule-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .schedule-table tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+    @media (max-width: 768px) {
+      .schedule-table th,
+      .schedule-table td {
+        padding: 10px;
+      }
+    }
+
+    /* Unified presenter image styles */
+    #presenters .speaker img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    /* Outline part panels */
+    .part-panel {
+      background: #ffffff;
+      border-left: 5px solid #00356B;
+    }
+    .part-panel .part-tag {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #00356B;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .part-panel ul {
+      margin-top: 12px;
+      margin-bottom: 0;
+      color: #6c757d;
+    }
+    .part-panel ul li {
+      margin-bottom: 6px;
+    }
+
+    /* Bios */
+  </style>
+</head>
+
+<body>
+
+  <header id="header" class="d-flex align-items-center ">
+    <div class="container-fluid container-xxl d-flex align-items-center">
+
+      <nav id="navbar" class="navbar order-last order-lg-0 ms-auto">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#outline">Outline</a></li>
+          <li><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
+          <li><a class="nav-link scrollto" href="#audience">Audience</a></li>
+          <li><a class="nav-link scrollto" href="#materials">Materials</a></li>
+          <li><a class="nav-link scrollto" href="#presenters">Presenters</a></li>
+          <li><a class="nav-link scrollto" href="mailto:hongru.carrywang@gmail.com">Contact</a></li>
+          <li><a class="nav-link scrollto" href="https://lifelongagent.github.io/">Workshop Series</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="hero-container" data-aos="zoom-in" data-aos-delay="200">
+      <h1 class="mb-4 pb-0" style="text-transform: none;">
+        EMNLP 2026 Tutorial<br>
+        Lifelong Language Agents:<br>
+        Theory and Practice<br>
+      </h1>
+      <h2 class="mb-4 pb-0" style="text-transform: none; color: white;">
+        October 24&ndash;29, 2026<br>
+        Budapest, Hungary
+      </h2>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <section id="about">
+      <div class="container position-relative" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>About The Tutorial</h2>
+            <p style="font-size: 18px;">
+              Language agents&mdash;LLMs that reason, invoke tools, and interact with users over long horizons&mdash;have become a central paradigm in NLP. Yet the field's training and evaluation practices remain stubbornly <b>single-phase</b>: an agent is trained once, scored on a fixed benchmark, and deployed without any mechanism to evolve when tools change, user preferences drift, or new failure modes emerge.
+            </p>
+            <p style="font-size: 18px;">
+              This three-hour cutting-edge tutorial introduces <b>lifelong language agents</b>: agents that learn, align, and evolve across sustained interaction. We organize the area around three coupled questions. <b>Theory</b>: when should an agent think internally versus act externally, and how should computational effort be allocated? We present the <b>Theory of Agent (ToA)</b>, a recent framework that formalizes this as an epistemic-effort allocation problem and unifies four canonical failure modes (under/over-thinking, under/over-acting). <b>Practice</b>: we survey concrete recipes spanning capability building, behavioral regulation, and multi-dimensional diagnosis, each paired with contemporaneous external work. <b>Lifelong</b>: we cover continual learning under evolving tools, long-horizon alignment under distribution shift, and agent self-evolution via composed skills and learned world models.
+            </p>
+            <p style="font-size: 18px;">
+              The tutorial provides the NLP community with a <b>unified vocabulary and a field map</b>&mdash;not a single lab's research stream&mdash;together with classroom-ready pedagogical materials so that the lifelong-agent agenda can diffuse beyond research labs into graduate curricula.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="outline" class="section-with-bg">
+      <br>
+      <br>
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Tutorial Outline</h2>
+          <p>A three-hour tutorial in four parts</p>
+        </div>
+
+        <div class="container">
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="part-panel interactive-panel p-4 border shadow-sm rounded">
+                <span class="part-tag">Part I &middot; Theory &middot; 50 min</span>
+                <b style="font-size: 18px; color: #343a40;">The Theory of Agent (ToA)</b>
+                <p style="color: #6c757d; margin-top: 10px;">
+                  Agent intelligence as an adaptive effort-allocation problem: a knowledge boundary separating what the agent can answer from parameters versus what requires external interaction, an epistemic-necessity criterion for tool use, and an epistemic-effort decomposition whose minimum can only be allocated, never eliminated.
+                </p>
+                <ul>
+                  <li>ToA basics and the effort decomposition</li>
+                  <li>Four canonical failure modes: under/over-thinking and under/over-acting as misallocations of effort</li>
+                  <li>Connections to ReAct, Tree of Thoughts, Reflexion, and agentic RL</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="part-panel interactive-panel p-4 border shadow-sm rounded">
+                <span class="part-tag">Part II &middot; Practice &middot; 70 min</span>
+                <b style="font-size: 18px; color: #343a40;">From Theory to Recipes</b>
+                <p style="color: #6c757d; margin-top: 10px;">
+                  Concrete recipes organized along three axes that mirror the failure-mode taxonomy, each contrasted with at least one contemporaneous external line so attendees leave with a comparative map.
+                </p>
+                <ul>
+                  <li><b>Build</b> &mdash; capability construction: high-quality reasoning rationales (Cue-CoT, SRLM), plan-execute-generate frameworks (SAFARI), and RL for tool-integrated reasoning (ToolRL, Search-R2)</li>
+                  <li><b>Regulate</b> &mdash; when and how much to think versus act: Self-DC, SMART, AdaCtrl, OTC-PO</li>
+                  <li><b>Diagnose</b> &mdash; multi-dimensional evaluation: AppBench, DialogTool, PerLTQA, SafeToolBench, TransBench, compared with GAIA, OSWorld, WebArena, SWE-Bench</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="part-panel interactive-panel p-4 border shadow-sm rounded">
+                <span class="part-tag">Part III &middot; Lifelong &middot; 40 min</span>
+                <b style="font-size: 18px; color: #343a40;">What Changes Without the Single-Phase Assumption</b>
+                <p style="color: #6c757d; margin-top: 10px;">
+                  The conceptual core of the tutorial: three thrusts that emerge once an agent is no longer trained once and never updated again.
+                </p>
+                <ul>
+                  <li><b>Continual learning</b> under evolving tools, tasks, and users &mdash; data-to-policy updates, structured memory abstractions, and skill-library approaches inspired by Voyager</li>
+                  <li><b>Long-term alignment</b> under distribution shift &mdash; decomposable preferences that separate personalization from inviolable safety floors, and robust long-horizon defense against prompt-injection and jailbreak chains</li>
+                  <li><b>Agent evolution</b> &mdash; composing and creating new tools, internalizing the environment via learned world models, and multi-agent coordination; in ToA terms, progressively collapsing external effort into internal effort</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="part-panel interactive-panel p-4 border shadow-sm rounded">
+                <span class="part-tag">Part IV &middot; Demo + Q&amp;A &middot; 30 min</span>
+                <b style="font-size: 18px; color: #343a40;">Hands-On Demo, Open Problems, and Discussion</b>
+                <p style="color: #6c757d; margin-top: 10px;">
+                  A 15-minute hands-on &ldquo;diagnose the failure mode&rdquo; exercise, five open problems exposed by the lifelong framing, and an audience Q&amp;A.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <br>
+      <br>
+    </section>
+
+    <section id="schedule" style="padding-top: 60px;">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Schedule</h2>
+          <p>Three-hour tutorial outline (3.5-hour slot including the coffee break)</p>
+        </div>
+        <style>
+          .schedule-table td.time, .schedule-table th:first-child { white-space: nowrap; }
+          .schedule-table tr.break-row td { background-color: #fff3cd80 !important; }
+          .schedule-table tr.part-row td { background-color: #d1ecf180 !important; font-weight: 700; }
+          .schedule-table tr.total-row td { background-color: #e2eeff !important; font-weight: 700; }
+        </style>
+        <div class="table-responsive">
+          <table class="schedule-table table align-middle">
+            <thead>
+              <tr>
+                <th>Segment</th>
+                <th>Min</th>
+                <th>Topic</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0. Welcome</td>
+                <td>10</td>
+                <td>Two opening failure cases.</td>
+              </tr>
+              <tr class="part-row"><td colspan="3">Part I: Theory (50 min)</td></tr>
+              <tr>
+                <td>1.1 ToA basics</td>
+                <td>20</td>
+                <td>Effort decomposition.</td>
+              </tr>
+              <tr>
+                <td>1.2 Failure modes</td>
+                <td>15</td>
+                <td>Under/over think, act.</td>
+              </tr>
+              <tr>
+                <td>1.3 Connections</td>
+                <td>15</td>
+                <td>ReAct, ToT, RL.</td>
+              </tr>
+              <tr class="break-row">
+                <td>Coffee break</td>
+                <td>30</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr class="part-row"><td colspan="3">Part II: Practice (70 min)</td></tr>
+              <tr>
+                <td>2.1 Build</td>
+                <td>25</td>
+                <td>Capability stack.</td>
+              </tr>
+              <tr>
+                <td>2.2 Regulate</td>
+                <td>25</td>
+                <td>Routing &amp; budget.</td>
+              </tr>
+              <tr>
+                <td>2.3 Diagnose</td>
+                <td>20</td>
+                <td>Multi-dim eval.</td>
+              </tr>
+              <tr class="part-row"><td colspan="3">Part III: Lifelong (40 min)</td></tr>
+              <tr>
+                <td>3.1 Continual learning</td>
+                <td>12</td>
+                <td>Tools, users, drift.</td>
+              </tr>
+              <tr>
+                <td>3.2 Long-term alignment</td>
+                <td>13</td>
+                <td>Safety floors.</td>
+              </tr>
+              <tr>
+                <td>3.3 Evolution</td>
+                <td>15</td>
+                <td>World models, multi-agent.</td>
+              </tr>
+              <tr class="part-row"><td colspan="3">Part IV: Demo + Q&amp;A (30 min)</td></tr>
+              <tr>
+                <td>4. Pedagogy + Q&amp;A</td>
+                <td>30</td>
+                <td>Diagnose-the-failure exercise.</td>
+              </tr>
+              <tr class="total-row">
+                <td>Total</td>
+                <td>180</td>
+                <td>3.5-hr slot incl. break.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 15px; color: #6c757d; margin-top: 10px;">
+          The exact tutorial day within the EMNLP 2026 program (October 24&ndash;29, Budapest) is to be confirmed by the organizing committee.
+        </p>
+      </div>
+    </section>
+
+    <br>
+    <br>
+
+    <section id="audience" class="section-with-bg">
+      <br>
+      <br>
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Target Audience &amp; Prerequisites</h2>
+          <p>Who this tutorial is for, and what background it assumes</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <p style="font-size: 18px;">
+              The tutorial targets researchers, Ph.D. students, and senior MSc students working on&mdash;or wishing to enter&mdash;language agents, tool learning, dialogue systems, RAG, alignment, and AI safety. It is also relevant to industry researchers deploying agentic systems. The content is self-contained at the conceptual level: all framework-specific terminology is introduced on slides, but it assumes the standard background of an EMNLP attendee.
+            </p>
+            <p style="font-size: 18px; margin-bottom: 8px;">Attendees are expected to have:</p>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background:#ffffff; height:100%;">
+                  <b style="color:#343a40;">(i) Transformers &amp; fine-tuning</b>
+                  <p style="color:#6c757d; margin-top:8px;">Familiarity with Transformer-based LLMs and standard fine-tuning paradigms (SFT, DPO/PPO).</p>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background:#ffffff; height:100%;">
+                  <b style="color:#343a40;">(ii) Reinforcement learning basics</b>
+                  <p style="color:#6c757d; margin-top:8px;">Basic comfort with policy gradient and reward modeling; no advanced RL theory required.</p>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background:#ffffff; height:100%;">
+                  <b style="color:#343a40;">(iii) Prompting &amp; RAG</b>
+                  <p style="color:#6c757d; margin-top:8px;">Familiarity with prompting, in-context learning, chain-of-thought reasoning, and retrieval-augmented generation.</p>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background:#ffffff; height:100%;">
+                  <b style="color:#343a40;">(iv) Probability foundations</b>
+                  <p style="color:#6c757d; margin-top:8px;">Comfort with conditional probability and Bellman-style decomposition.</p>
+                </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background:#ffffff;">
+                  <b style="color:#343a40;">(v) Optional: an agent framework</b>
+                  <p style="color:#6c757d; margin-top:8px;">Some exposure to Python and one agent framework (LangChain / AutoGen / OpenAgents) to fully follow the hands-on demo segment.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+    </section>
+
+    <section id="materials" style="padding-top: 60px;">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Pedagogical Materials</h2>
+          <p>Classroom-ready artifacts designed to drop into a graduate course</p>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background:#ffffff; height:100%;">
+              <b style="font-size: 18px; color:#343a40;">1. Hands-on exercise</b>
+              <p style="color:#6c757d; margin-top:10px;">A 15-minute &ldquo;Diagnose the failure mode&rdquo; activity: attendees receive six short agent-trajectory excerpts, classify them with the ToA framework in pairs, propose interventions, then compare against ground-truth categorizations.</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background:#ffffff; height:100%;">
+              <b style="font-size: 18px; color:#343a40;">2. Discussion-question pack</b>
+              <p style="color:#6c757d; margin-top:10px;">A bilingual (English + simplified Chinese) pack of twelve graduate-seminar prompts&mdash;e.g., when, if ever, should an agent prefer to hallucinate rather than search? Is &ldquo;tool overuse&rdquo; a capability or an alignment problem?</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="topic-panel interactive-panel p-4 border shadow-sm rounded" style="background:#ffffff; height:100%;">
+              <b style="font-size: 18px; color:#343a40;">3. Reference assignment</b>
+              <p style="color:#6c757d; margin-top:10px;">Starter code (~200 LoC) to build a minimum-viable Self-DC-style routing agent, evaluate it on a small subset of AppBench, and report on its failure modes&mdash;ready to drop into a graduate NLP or Agentic-AI course.</p>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 18px; margin-top: 15px;">
+          All slides (PDF + source), a captioned video recording, an annotated reading list, the demo notebook, and the discussion-question pack will be released on the ACL Anthology under permissive licenses, with bilingual (English / Chinese) summaries.
+        </p>
+      </div>
+    </section>
+
+    <br>
+    <br>
+
+    <section id="presenters" class="section-with-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Presenters</h2>
+          <p>This tutorial is presented by</p>
+        </div>
+
+        <div class="row justify-content-center text-center">
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200">
+              <img src="../assets/img/organizers/profile_hongru.jpeg" alt="Hongru Wang" class="img-fluid">
+              <br><a href="https://hrwise-nlp.github.io/" style="font-size: 1.2em; color: #00356B;">Hongru Wang</a></br>
+              <p>University of Edinburgh</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200">
+              <img src="../assets/img/organizers/profile_cheng.jpg" alt="Cheng Qian" class="img-fluid">
+              <br><a href="https://qiancheng0.github.io/" style="font-size: 1.2em; color: #00356B;">Cheng Qian</a></br>
+              <p>University of Illinois Urbana-Champaign</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200">
+              <img src="../assets/img/organizers/profile_emre.jpeg" alt="Emre Can Acikgoz" class="img-fluid">
+              <br><a href="https://emrecanacikgoz.github.io/" style="font-size: 1.2em; color: #00356B;">Emre Can Acikgoz</a></br>
+              <p>University of Illinois Urbana-Champaign</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200">
+              <img src="../assets/img/organizers/profile_manling.jpg" alt="Manling Li" class="img-fluid">
+              <br><a href="https://limanling.github.io/" style="font-size: 1.2em; color: #00356B;">Manling Li</a></br>
+              <p>Northwestern University</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="speaker" data-aos="fade-up" data-aos-delay="200">
+              <img src="../assets/img/organizers/profile_heng.jpeg" alt="Heng Ji" class="img-fluid">
+              <br><a href="https://blender.cs.illinois.edu/hengji.html" style="font-size: 1.2em; color: #00356B;">Heng Ji</a></br>
+              <p>University of Illinois Urbana-Champaign</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <br>
+    <br>
+
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+      </div>
+      <div class="credits">
+        Template adopted from <a href="https://workshop-multi-turn-interaction.github.io/">MTI-LLM @ NeurIPS 2025</a>
+      </div>
+    </div>
+  </footer>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
