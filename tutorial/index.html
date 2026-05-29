@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>EMNLP 2026 Tutorial - Lifelong Language Agents: Theory and Practice</title>
-  <meta content="EMNLP 2026 tutorial on Lifelong Language Agents: agents that learn, align, and evolve across sustained interaction." name="description">
-  <meta content="lifelong agents, language agents, EMNLP 2026, tutorial, tool learning, alignment, Theory of Agent, continual learning" name="keywords">
+  <title>EMNLP 2026 Tutorial - Lifelong Agents: Theory and Practice</title>
+  <meta content="EMNLP 2026 tutorial on Lifelong Agents: long-running systems that reason, use tools, maintain memory, adapt, and remain aligned across sustained interaction." name="description">
+  <meta content="lifelong agents, EMNLP 2026, tutorial, language agents, tool learning, memory, alignment, agent evaluation, long-term adaptation" name="keywords">
 
   <link href="../assets/img/others/robot.png" rel="icon">
   <link href="../assets/img/others/robot.png" rel="apple-touch-icon">
@@ -27,6 +27,20 @@
     #hero {
       background: url(../assets/img/background_budapest.jpg) top center;
       background-size: cover;
+    }
+
+    main > section {
+      scroll-margin-top: 80px;
+    }
+
+    #about,
+    #outline,
+    #schedule,
+    #audience,
+    #materials,
+    #presenters {
+      padding-top: 90px;
+      padding-bottom: 70px;
     }
 
     .schedule-table {
@@ -60,7 +74,7 @@
       }
     }
 
-    /* Unified presenter image styles */
+    /* Unified organizer image styles */
     #presenters .speaker img {
       width: 160px;
       height: 160px;
@@ -110,8 +124,8 @@
           <li><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
           <li><a class="nav-link scrollto" href="#audience">Audience</a></li>
           <li><a class="nav-link scrollto" href="#materials">Materials</a></li>
-          <li><a class="nav-link scrollto" href="#presenters">Presenters</a></li>
-          <li><a class="nav-link scrollto" href="mailto:hongru.carrywang@gmail.com">Contact</a></li>
+          <li><a class="nav-link scrollto" href="#presenters">Organizers</a></li>
+          <li><a class="nav-link scrollto" href="mailto:lifelongagent@googlegroups.com">Contact</a></li>
           <li><a class="nav-link scrollto" href="https://lifelongagent.github.io/">Workshop Series</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -124,7 +138,7 @@
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="200">
       <h1 class="mb-4 pb-0" style="text-transform: none;">
         EMNLP 2026 Tutorial<br>
-        Lifelong Language Agents:<br>
+        Lifelong Agents:<br>
         Theory and Practice<br>
       </h1>
       <h2 class="mb-4 pb-0" style="text-transform: none; color: white;">
@@ -142,13 +156,13 @@
           <div class="col-lg-12">
             <h2>About The Tutorial</h2>
             <p style="font-size: 18px;">
-              Language agents&mdash;LLMs that reason, invoke tools, and interact with users over long horizons&mdash;have become a central paradigm in NLP. Yet the field's training and evaluation practices remain stubbornly <b>single-phase</b>: an agent is trained once, scored on a fixed benchmark, and deployed without any mechanism to evolve when tools change, user preferences drift, or new failure modes emerge.
+              Agents are evolving from single-stage task solvers into long-running systems that reason, use tools, maintain memory, collaborate, and interact with users in realistic environments. As tasks, tools, environments, and safety requirements continually shift, sustaining useful and aligned behavior over an agent's lifetime has become a central challenge for NLP.
             </p>
             <p style="font-size: 18px;">
-              This three-hour cutting-edge tutorial introduces <b>lifelong language agents</b>: agents that learn, align, and evolve across sustained interaction. We organize the area around three coupled questions. <b>Theory</b>: when should an agent think internally versus act externally, and how should computational effort be allocated? We present the <b>Theory of Agent (ToA)</b>, a recent framework that formalizes this as an epistemic-effort allocation problem and unifies four canonical failure modes (under/over-thinking, under/over-acting). <b>Practice</b>: we survey concrete recipes spanning capability building, behavioral regulation, and multi-dimensional diagnosis, each paired with contemporaneous external work. <b>Lifelong</b>: we cover continual learning under evolving tools, long-horizon alignment under distribution shift, and agent self-evolution via composed skills and learned world models.
+              This three-hour cutting-edge tutorial offers a comprehensive introduction to <b>lifelong agents</b>. We organize representative work around five lifecycle stages: <b>foundations</b>, <b>capability development</b>, <b>behavior and alignment</b>, <b>long-term adaptation</b>, and <b>evaluation</b>. Across these stages, the tutorial covers reasoning and planning, tool learning, retrieval and memory, agentic reinforcement learning, safety, multimodal and embodied agents, multi-agent systems, and long-horizon evaluation.
             </p>
             <p style="font-size: 18px;">
-              The tutorial provides the NLP community with a <b>unified vocabulary and a field map</b>&mdash;not a single lab's research stream&mdash;together with classroom-ready pedagogical materials so that the lifelong-agent agenda can diffuse beyond research labs into graduate curricula.
+              The goal is a community-facing field map rather than a presentation of any single research line. Attendees will gain a structured overview of the field, a curated reading list, and practical experience in diagnosing agent failures while developing both insight and foresight for lifelong agent systems.
             </p>
           </div>
         </div>
@@ -156,27 +170,25 @@
     </section>
 
     <section id="outline" class="section-with-bg">
-      <br>
-      <br>
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h2>Tutorial Outline</h2>
-          <p>A three-hour tutorial in four parts</p>
+          <p>A lifecycle view of agents over sustained interaction</p>
         </div>
 
         <div class="container">
           <div class="row mb-4">
             <div class="col-12">
               <div class="part-panel interactive-panel p-4 border shadow-sm rounded">
-                <span class="part-tag">Part I &middot; Theory &middot; (50 min)</span><br>
-                <b style="font-size: 18px; color: #343a40;">The Theory of Agent (ToA)</b>
+                <span class="part-tag">Module 1 &middot; Foundations &middot; 30 min</span><br>
+                <b style="font-size: 18px; color: #343a40;">Foundations of Agents</b>
                 <p style="color: #6c757d; margin-top: 10px;">
-                  Agent intelligence as an adaptive effort-allocation problem: a knowledge boundary separating what the agent can answer from parameters versus what requires external interaction, an epistemic-necessity criterion for tool use, and an epistemic-effort decomposition whose minimum can only be allocated, never eliminated.
+                  We establish agents as systems that reason, act, observe, remember, and interact with external environments. The module clarifies tools, environments, memory, trajectories, feedback, and long-horizon interaction.
                 </p>
                 <ul>
-                  <li>ToA basics and the effort decomposition</li>
-                  <li>Four canonical failure modes: under/over-thinking and under/over-acting as misallocations of effort</li>
-                  <li>Connections to ReAct, Tree of Thoughts, Reflexion, and agentic RL</li>
+                  <li>Representative settings: ReAct agents, tool-augmented agents, memory-based agents, multi-agent systems, and embodied agents</li>
+                  <li>Diagnostic vocabulary: knowledge boundaries, uncertainty, effort allocation, tool overuse, and tool underuse</li>
+                  <li>Opening failure cases that motivate a lifecycle structure for the tutorial</li>
                 </ul>
               </div>
             </div>
@@ -185,15 +197,15 @@
           <div class="row mb-4">
             <div class="col-12">
               <div class="part-panel interactive-panel p-4 border shadow-sm rounded">
-                <span class="part-tag">Part II &middot; Practice &middot; (70 min)</span><br>
-                <b style="font-size: 18px; color: #343a40;">From Theory to Recipes</b>
+                <span class="part-tag">Module 2 &middot; Capability Development &middot; 35 min</span><br>
+                <b style="font-size: 18px; color: #343a40;">Capability Development in Agents</b>
                 <p style="color: #6c757d; margin-top: 10px;">
-                  Concrete recipes organized along three axes that mirror the failure-mode taxonomy, each contrasted with at least one contemporaneous external line so attendees leave with a comparative map.
+                  We study how agents acquire capabilities for sustained interaction, organized by the source of capability and by how methods extend agents beyond single-turn generation.
                 </p>
                 <ul>
-                  <li><b>Build</b> &mdash; capability construction: high-quality reasoning rationales (Cue-CoT, SRLM), plan-execute-generate frameworks (SAFARI), and RL for tool-integrated reasoning (ToolRL, Search-R2)</li>
-                  <li><b>Regulate</b> &mdash; when and how much to think versus act: Self-DC, SMART, AdaCtrl, OTC-PO</li>
-                  <li><b>Diagnose</b> &mdash; multi-dimensional evaluation: AppBench, DialogTool, PerLTQA, SafeToolBench, TransBench, compared with GAIA, OSWorld, WebArena, SWE-Bench</li>
+                  <li>Internal reasoning and planning for task decomposition and multi-step execution</li>
+                  <li>External interaction through tool invocation, tool composition, retrieval, and API use</li>
+                  <li>Experience-based development through memory, session continuity, and feedback-driven improvement</li>
                 </ul>
               </div>
             </div>
@@ -202,15 +214,15 @@
           <div class="row mb-4">
             <div class="col-12">
               <div class="part-panel interactive-panel p-4 border shadow-sm rounded">
-                <span class="part-tag">Part III &middot; Lifelong &middot; (40 min)</span><br>
-                <b style="font-size: 18px; color: #343a40;">What Changes Without the Single-Phase Assumption</b>
+                <span class="part-tag">Module 3 &middot; Behavior and Alignment &middot; 40 min</span><br>
+                <b style="font-size: 18px; color: #343a40;">Behavior and Alignment of Agents</b>
                 <p style="color: #6c757d; margin-top: 10px;">
-                  The conceptual core of the tutorial: three thrusts that emerge once an agent is no longer trained once and never updated again.
+                  We shift from what agents can do to when and how these capabilities should be used. Behavioral control is treated as a central issue in deployed agent systems.
                 </p>
                 <ul>
-                  <li><b>Continual learning</b> under evolving tools, tasks, and users &mdash; data-to-policy updates, structured memory abstractions, and skill-library approaches inspired by Voyager</li>
-                  <li><b>Long-term alignment</b> under distribution shift &mdash; decomposable preferences that separate personalization from inviolable safety floors, and robust long-horizon defense against prompt-injection and jailbreak chains</li>
-                  <li><b>Agent evolution</b> &mdash; composing and creating new tools, internalizing the environment via learned world models, and multi-agent coordination; in ToA terms, progressively collapsing external effort into internal effort</li>
+                  <li>Capability selection: when to reason, retrieve, call tools, ask clarification questions, or stop</li>
+                  <li>Resource control: reasoning budgets, tool-use budgets, and memory-update decisions</li>
+                  <li>Safety constraints: unsafe tool execution, pre-execution safety checks, and deployment-time alignment concerns</li>
                 </ul>
               </div>
             </div>
@@ -219,22 +231,42 @@
           <div class="row mb-4">
             <div class="col-12">
               <div class="part-panel interactive-panel p-4 border shadow-sm rounded">
-                <span class="part-tag">Part IV &middot; Demo + Q&amp;A &middot; 30 min</span>
-                <b style="font-size: 18px; color: #343a40;">Hands-On Demo, Open Problems, and Discussion</b>
+                <span class="part-tag">Module 4 &middot; Long-term Adaptation &middot; 30 min</span><br>
+                <b style="font-size: 18px; color: #343a40;">Long-term Adaptation of Agents</b>
                 <p style="color: #6c757d; margin-top: 10px;">
-                  A 15-minute hands-on &ldquo;diagnose the failure mode&rdquo; exercise, five open problems exposed by the lifelong framing, and an audience Q&amp;A.
+                  We extend the discussion from within-session behavior to changes that unfold over time as tools, users, tasks, and safety requirements shift.
                 </p>
+                <ul>
+                  <li>Memory and experience reuse across sessions</li>
+                  <li>Skill acquisition and reusable tool compositions</li>
+                  <li>Risks from long-term adaptation: memory pollution, skill drift, self-reinforcing errors, and unsafe capability expansion</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="part-panel interactive-panel p-4 border shadow-sm rounded">
+                <span class="part-tag">Module 5 &middot; Evaluation &middot; 35 min</span><br>
+                <b style="font-size: 18px; color: #343a40;">Evaluation of Agents</b>
+                <p style="color: #6c757d; margin-top: 10px;">
+                  We examine how long-running agents should be evaluated beyond final-answer accuracy, then close with a hands-on diagnosis exercise over representative agent trajectories.
+                </p>
+                <ul>
+                  <li>Task success, cost, latency, and resource use</li>
+                  <li>Robustness under distribution shift, tool misuse, unsafe execution, and changing environments</li>
+                  <li>Long-horizon properties: memory quality, adaptation, cross-session stability, and degradation</li>
+                </ul>
               </div>
             </div>
           </div>
 
         </div>
       </div>
-      <br>
-      <br>
     </section>
 
-    <section id="schedule" style="padding-top: 60px;">
+    <section id="schedule">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h2>Schedule</h2>
@@ -259,71 +291,47 @@
               <tr>
                 <td>0. Welcome</td>
                 <td>10</td>
-                <td>Two opening failure cases.</td>
-              </tr>
-              <tr class="part-row"><td colspan="3">Part I: Theory (50 min)</td></tr>
-              <tr>
-                <td>1.1 ToA basics</td>
-                <td>20</td>
-                <td>Effort decomposition.</td>
+                <td>Failure cases; tutorial roadmap.</td>
               </tr>
               <tr>
-                <td>1.2 Failure modes</td>
-                <td>15</td>
-                <td>Under/over think, act.</td>
+                <td>1. Foundations</td>
+                <td>30</td>
+                <td>Agent concepts; settings; diagnostic vocabulary.</td>
               </tr>
               <tr>
-                <td>1.3 Connections</td>
-                <td>15</td>
-                <td>ReAct, ToT, RL.</td>
+                <td>2. Capability Development</td>
+                <td>35</td>
+                <td>Reasoning; planning; tools; memory; learning.</td>
+              </tr>
+              <tr>
+                <td>3. Behavior &amp; Alignment</td>
+                <td>40</td>
+                <td>Capability selection; budgets; stopping; safety.</td>
               </tr>
               <tr class="break-row">
                 <td>Coffee break</td>
                 <td>30</td>
                 <td>&mdash;</td>
               </tr>
-              <tr class="part-row"><td colspan="3">Part II: Practice (70 min)</td></tr>
               <tr>
-                <td>2.1 Build</td>
-                <td>25</td>
-                <td>Capability stack.</td>
-              </tr>
-              <tr>
-                <td>2.2 Regulate</td>
-                <td>25</td>
-                <td>Routing &amp; budget.</td>
-              </tr>
-              <tr>
-                <td>2.3 Diagnose</td>
-                <td>20</td>
-                <td>Multi-dim eval.</td>
-              </tr>
-              <tr class="part-row"><td colspan="3">Part III: Lifelong (40 min)</td></tr>
-              <tr>
-                <td>3.1 Continual learning</td>
-                <td>12</td>
-                <td>Tools, users, drift.</td>
-              </tr>
-              <tr>
-                <td>3.2 Long-term alignment</td>
-                <td>13</td>
-                <td>Safety floors.</td>
-              </tr>
-              <tr>
-                <td>3.3 Evolution</td>
-                <td>15</td>
-                <td>World models, multi-agent.</td>
-              </tr>
-              <tr class="part-row"><td colspan="3">Part IV: Demo + Q&amp;A (30 min)</td></tr>
-              <tr>
-                <td>4. Pedagogy + Q&amp;A</td>
+                <td>4. Long-term Adaptation</td>
                 <td>30</td>
-                <td>Diagnose-the-failure exercise.</td>
+                <td>Memory; skills; drift; self-improvement.</td>
+              </tr>
+              <tr>
+                <td>5. Evaluation</td>
+                <td>35</td>
+                <td>Multi-dimensional evaluation; failure diagnosis; Q&amp;A.</td>
               </tr>
               <tr class="total-row">
-                <td>Total</td>
+                <td>Total content</td>
                 <td>180</td>
-                <td>3.5-hr slot incl. break.</td>
+                <td>Three-hour tutorial content.</td>
+              </tr>
+              <tr class="total-row">
+                <td>Total slot</td>
+                <td>210</td>
+                <td>Including coffee break.</td>
               </tr>
             </tbody>
           </table>
@@ -334,14 +342,41 @@
       </div>
     </section>
 
-    <br>
-    <br>
+    <section id="audience" class="section-with-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Audience</h2>
+          <p>Who the tutorial is designed for</p>
+        </div>
+        <p style="font-size: 18px;">
+          The tutorial is intended for researchers, Ph.D. students, advanced master's students, and industry practitioners working on language agents, tool learning, RAG, dialogue systems, alignment, AI safety, and agentic system deployment.
+        </p>
+        <p style="font-size: 18px;">
+          The tutorial is self-contained at the conceptual level. Expected background includes familiarity with LLMs, prompting, chain-of-thought reasoning, RAG, and standard fine-tuning or alignment methods such as SFT, DPO, PPO, or RLHF. Basic knowledge of reinforcement learning, Python, or agent frameworks will be useful but is not required.
+        </p>
+      </div>
+    </section>
+
+    <section id="materials">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Materials</h2>
+          <p>Classroom-ready resources for lifelong agents</p>
+        </div>
+        <p style="font-size: 18px;">
+          We will provide classroom-ready slides, an annotated reading list, a hands-on diagnostic exercise, discussion questions for graduate seminars, and a minimal demo notebook.
+        </p>
+        <p style="font-size: 18px;">
+          The reading list will be organized by the tutorial lifecycle: agent foundations, capability development, behavior and alignment, long-term adaptation, and long-horizon evaluation. Materials will be released at least two months before the tutorial through the official website and ACL Anthology.
+        </p>
+      </div>
+    </section>
 
     <section id="presenters" class="section-with-bg">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
-          <h2>Presenters</h2>
-          <p>This tutorial is presented by</p>
+          <h2>Organizers</h2>
+          <p>Organizers and advisory board</p>
         </div>
 
         <div class="row justify-content-center text-center">
@@ -370,14 +405,7 @@
             <div class="speaker" data-aos="fade-up" data-aos-delay="200">
               <img src="../assets/img/organizers/profile_zhenfei.jpg" alt="Zhenfei Yin" class="img-fluid">
               <br><a href="https://yinzhenfei.github.io/" style="font-size: 1.2em; color: #00356B;">Zhenfei Yin</a></br>
-              <p>Princeton University</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 col-12">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="200">
-              <img src="../assets/img/organizers/profile_manling.jpg" alt="Manling Li" class="img-fluid">
-              <br><a href="https://limanling.github.io/" style="font-size: 1.2em; color: #00356B;">Manling Li</a></br>
-              <p>Northwestern University</p>
+              <p>University of Oxford</p>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
@@ -390,9 +418,6 @@
         </div>
       </div>
     </section>
-
-    <br>
-    <br>
 
   </main>
 
