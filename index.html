@@ -119,6 +119,42 @@
       object-fit: contain;
       margin-bottom: 30px;           /* spacing handled by text margin */
     }
+
+    .openreview-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border: 2px solid #f82249;
+      border-radius: 50px;
+      background: #f82249;
+      color: #fff;
+      font-family: "Raleway", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(248, 34, 73, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .openreview-cta:hover {
+      background: #fff;
+      color: #f82249;
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(248, 34, 73, 0.32);
+    }
+
+    .hero-openreview-cta {
+      margin: 0 0 24px;
+    }
+
+    .cfp-openreview-cta {
+      margin: -25px 0 34px;
+      text-align: center;
+    }
   </style>
   </head>
 
@@ -158,6 +194,9 @@
           The 2nd Workshop on Lifelong Agents:<br>
           Learning, Aligning, and Evolving<br>
           </h1>
+          <a class="openreview-cta hero-openreview-cta" href="https://openreview.net/group?id=colmweb.org/COLM/2026/Workshop/LLA" target="_blank" rel="noopener noreferrer">
+            Submit via OpenReview <i class="bi bi-box-arrow-up-right"></i>
+          </a>
           <h2 class="mb-4 pb-0" style="text-transform: none; color: white;">
             October 9th, 2026<br>
             San Francisco, USA
@@ -343,6 +382,11 @@
 
         <div class="section-header">
           <h2>Call For Papers</h2>
+        </div>
+        <div class="cfp-openreview-cta">
+          <a class="openreview-cta" href="https://openreview.net/group?id=colmweb.org/COLM/2026/Workshop/LLA" target="_blank" rel="noopener noreferrer">
+            Submit via OpenReview <i class="bi bi-box-arrow-up-right"></i>
+          </a>
         </div>
         <p>
           The <b>Workshop on Lifelong Agent @ COLM 2026</b> invites submissions on the development of lifelong agents that can continuously learn, maintain stable alignment, and sustainably evolve over extended deployment. We welcome novel architectures, algorithms, theoretical analyses, empirical studies, benchmarks, and real-world applications spanning topics such as agent post-training, agentic RL, user-agent alignment, self-evolving agents, embodied lifelong agents, and agents for science. Submissions must present original, unpublished research.
