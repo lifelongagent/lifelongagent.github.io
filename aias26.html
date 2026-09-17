@@ -54,7 +54,7 @@
         padding: 10px;
       }
     }
-    
+
     /* Unified organizer image styles */
     #organizers .speaker img {
       width: 160px;
@@ -124,6 +124,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 8px;
       padding: 12px 28px;
       border: 2px solid #f82249;
@@ -139,6 +140,18 @@
       transition: all 0.25s ease;
     }
 
+    .submission-status {
+      padding: 5px 9px;
+      border-radius: 50px;
+      background: #fff;
+      color: #f82249;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
     .openreview-cta:visited,
     .openreview-cta:active,
     .openreview-cta:focus {
@@ -152,6 +165,33 @@
       text-decoration: none;
       transform: translateY(-2px);
       box-shadow: 0 14px 34px rgba(248, 34, 73, 0.32);
+    }
+
+    .openreview-cta:hover .submission-status {
+      background: #f82249;
+      color: #fff;
+    }
+
+    .submission-prompt {
+      margin: 14px auto 0;
+      max-width: 720px;
+      color: #4b5264;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .submission-portal-link {
+      color: #f82249;
+      font-weight: 800;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .submission-portal-link:hover,
+    .submission-portal-link:focus {
+      color: #c91435;
     }
 
     .registration-cta {
@@ -249,8 +289,9 @@
           <a class="registration-cta hero-registration-cta" href="https://www.aiasplus.org/event-registration" target="_blank" rel="noopener noreferrer">
             Registration Link <i class="bi bi-box-arrow-up-right"></i>
           </a>
-          <a class="openreview-cta hero-openreview-cta" href="https://openreview.net/XXXXXX" target="_blank" rel="noopener noreferrer">
-            Submit via OpenReview (Coming Soon) <i class="bi bi-box-arrow-up-right"></i>
+          <a class="openreview-cta hero-openreview-cta" href="https://openreview.net/group?id=aiasplus.org/AIAS/2026/Workshop/LLA" target="_blank" rel="noopener noreferrer">
+            <span class="submission-status">Submissions Open</span>
+            Submit on OpenReview <i class="bi bi-box-arrow-up-right"></i>
           </a>
           <h2 class="mb-4 pb-0" style="text-transform: none; color: white;">
             November 7th, 2026<br>
@@ -439,18 +480,20 @@
           <h2>Call For Papers</h2>
         </div>
         <div class="cfp-openreview-cta">
-          <a class="openreview-cta" href="https://openreview.net/XXXXXX" target="_blank" rel="noopener noreferrer">
-            Submit via OpenReview (Coming Soon) <i class="bi bi-box-arrow-up-right"></i>
+          <a class="openreview-cta" href="https://openreview.net/group?id=aiasplus.org/AIAS/2026/Workshop/LLA" target="_blank" rel="noopener noreferrer">
+            <span class="submission-status">Submissions Open</span>
+            Submit Your Paper on OpenReview <i class="bi bi-box-arrow-up-right"></i>
           </a>
+          <p class="submission-prompt">Share your work with the lifelong-agent community and help shape the next generation of agents that learn, align, and evolve.</p>
         </div>
         <p>
           The <b>Workshop on Lifelong Agent @ AIAS 2026</b> invites submissions on the development of lifelong agents that can continuously learn, maintain stable alignment, and sustainably evolve over extended deployment. We welcome novel architectures, algorithms, theoretical analyses, empirical studies, benchmarks, and real-world applications spanning topics such as agent post-training, agentic RL, user-agent alignment, self-evolving agents, embodied lifelong agents, and agents for science. Submissions must present original, unpublished research.
         </p>
         <h3>Key Dates</h3>
         <ul class="fa-ul">
-          <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Submission Date for Workshop Contributions</b>: August 31st, 2026, AoE (subject to adjustment)</li> 
+          <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Submission Deadline for Workshop Contributions</b>: October 10th, 2026, AoE (subject to adjustment)</li> 
           <!-- <del>February 15, 2025</del> <span style="color: red; font-weight: bold;">September <del>1st</del>2nd, 2025, AoE</span></li> -->
-          <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Accept/Reject Notification Date</b>: September 30th, 2026, AoE (subject to adjustment)</li>
+          <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Accept/Reject Notification Date</b>: October 15th, 2026, AoE (subject to adjustment)</li>
           <li><span class="fa-li"><i class="fa fa-check"></i></span><b>Workshop Date</b>: November 7, 2026, AoE</li>
         </ul>
         Deadlines are strict and will not be extended under any circumstances. All deadlines follow the <a href="https://time.is/Anywhere_on_Earth">Anywhere on Earth (AoE)</a> timezone.
@@ -462,7 +505,8 @@
           <a href="https://docs.openreview.net/getting-started/creating-an-openreview-profile">Learn how to create an OpenReview profile here</a>.
           <br>
           <br>
-          Submit papers through the <b>AIAS 2026 Workshop Submission Portal on OpenReview (Coming Soon)</b> (<a href="https://openreview.net/XXXXXX" target="_blank">Lifelong Agent Workshop Submission Portal</a>).
+          <b>Submissions are now open.</b> Submit your paper through the
+          <a class="submission-portal-link" href="https://openreview.net/group?id=aiasplus.org/AIAS/2026/Workshop/LLA" target="_blank" rel="noopener noreferrer">AIAS 2026 Lifelong Agent Workshop Submission Portal on OpenReview <i class="bi bi-box-arrow-up-right"></i></a>.
         </p>
 
         <h3>Scope</h3>
@@ -807,7 +851,7 @@
             <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
               <img src="assets/img/organizers/profile_heng.jpeg" alt="Heng Ji" class="img-fluid">
               <br><a href="https://blender.cs.illinois.edu/hengji.html" style="font-size: 1.2em; color: #00356B;">Heng Ji</a></br>
-              <p>University of Illinois Urbana-Champaign / Amazon Scholar</p>
+              <p>University of Illinois Urbana-Champaign / Apodex</p>
             </div>
           </div>
           <!-- <div class="col-md-4 col-sm-6 col-12">
@@ -835,7 +879,7 @@
             <div class="speaker" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
               <img src="assets/img/organizers/profile_gokhan.jpeg" alt="Gokhan Tur" class="img-fluid">
               <br><a href="https://siebelschool.illinois.edu/about/people/department-faculty/gokhan" style="font-size: 1.2em; color: #00356B;">Gokhan Tur</a></br>
-              <p>University of Illinois Urbana-Champaign / Amazon Scholar</p>
+              <p>University of Illinois Urbana-Champaign / AirBNB</p>
             </div>
           </div>
         </div>
@@ -845,8 +889,7 @@
     <br>
     <br>
 
-    <!-- Sponsors -->
-    <section id="sponsors" class="section-with-bg">
+    <!-- <section id="sponsors" class="section-with-bg">
 
       <br>
       <br>
@@ -858,23 +901,21 @@
 
         <div class="row supporters-wrap justify-content-center">
 
-          <!-- <div class="col-lg-4 col-md-6 col-12">
+          <div class="col-lg-4 col-md-6 col-12">
             <div class="sponsor-item" style="text-align: center;">
               <div class="supporter-logo" data-aos="fade-up" data-aos-delay="200">
                 <img src="assets/img/sponsors/tencent.png" alt="Tencent" class="img-fluid">
               </div>
               <p style="font-size: 1.2em; font-weight: 500; margin-top: 10px;">Tencent</p>
             </div>
-          </div> -->
+          </div>
 
         </div>
       </div>
     </section>
 
     <br>
-    <br>
-
-
+    <br> -->
 
 
   </main><footer id="footer">
